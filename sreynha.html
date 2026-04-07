@@ -1,11 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTE-8">
-        <meta name="viewport" content="width=device-width",inigi>
-        <tittle>Document</tittle>
-    </head>
-    <body>
-        <h1>This is mary branch</h1>
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f6f6f6;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      color: #2e7d32;
+    }
+
+    .logo-box {
+      width: 35px;
+      height: 35px;
+      background: #2e7d32;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .nav-links a.active {
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+      background: #2e7d32;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #06152c;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #0f2d4d;
+      color: #7dd3a7;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      width: 220px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      color: #2e7d32;
+      font-size: 28px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #777;
+      margin-top: 8px;
+    }
+
+    /* Team Section */
+    .team {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .team small {
+      color: #2e7d32;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+
+    .team h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-top: 10px;
+    }
+    /* SECTION HEADINGS */
+.section-tag {
+  text-align: center;
+  color: #2e7d32;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+/* TEAM */
+.team-section {
+  padding: 60px 20px;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  background: #fff;
+  padding: 30px;
+  width: 230px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #eee;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 0 auto 15px;
+}
+
+/* Avatar Colors */
+.green { background: linear-gradient(135deg, #34d399, #16a34a); }
+.purple { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+.orange { background: linear-gradient(135deg, #fb923c, #f97316); }
+.pink { background: linear-gradient(135deg, #f472b6, #db2777); }
+
+.team-card h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.team-card p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* VALUES */
+.values-section {
+  background: #e6f2ec;
+  margin: 60px 20px;
+  padding: 60px 30px;
+  border-radius: 25px;
+}
+
+.values-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.value-item {
+  display: flex;
+  gap: 15px;
+  max-width: 300px;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.value-item h4 {
+  margin-bottom: 5px;
+}
+
+.value-item p {
+  font-size: 14px;
+  color: #555;
+}
+/* VALUES WRAPPER */
+.values-wrapper {
+  padding: 60px 20px;
+}
+
+.values-box {
+  background: #e6f2ec;
+  border-radius: 25px;
+  padding: 60px 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.values-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.value-item {
+  display: flex;
+  gap: 15px;
+  max-width: 320px;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.value-item h4 {
+  margin-bottom: 5px;
+}
+
+.value-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* FOOTER */
+.footer {
+  background: #06152c;
+  color: #cbd5e1;
+  padding-top: 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 0 40px 40px;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  margin: 15px 0;
+  color: #94a3b8;
+}
+
+.socials span {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* LINKS */
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-links h4 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  display: block;
+  text-decoration: none;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* NEWSLETTER */
+.newsletter h4 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.newsletter p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #94a3b8;
+}
+
+.newsletter-box {
+  display: flex;
+  background: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.newsletter-box input {
+  border: none;
+  outline: none;
+  padding: 12px;
+  flex: 1;
+  background: transparent;
+  color: white;
+}
+
+.newsletter-box button {
+  background: #22c55e;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  color: white;
+}
+
+/* BOTTOM */
+.footer-bottom {
+  border-top: 1px solid #1e293b;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.footer-bottom-links a {
+  margin-left: 15px;
+  color: #64748b;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <div class="logo-box">E</div>
+      EduNova
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">Detail</a>
+      <a href="#" class="active">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-outline">Sign In</button>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="tag">Our Mission</div>
+    <h1>Education for <span>Everyone</span>,<br>Everywhere</h1>
+    <p>
+      EduNova was founded in 2020 with one belief: quality education should be
+      accessible to everyone, regardless of location or background.
+    </p>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="card">
+      <h2>500+</h2>
+      <p>Courses Available</p>
+    </div>
+
+    <div class="card">
+      <h2>48k+</h2>
+      <p>Active Students</p>
+    </div>
+
+    <div class="card">
+      <h2>120+</h2>
+      <p>Expert Instructors</p>
+    </div>
+
+    <div class="card">
+      <h2>4.8★</h2>
+      <p>Average Rating</p>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team">
+    <small>THE PEOPLE BEHIND EDUNOVA</small>
+    <h2>Meet the Team</h2>
+  </section>
+  <!-- TEAM SECTION -->
+<section class="team-section">
+  <p class="section-tag">THE PEOPLE BEHIND EDUNOVA</p>
+  <h2 class="section-title">Meet the Team</h2>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="avatar green">A</div>
+      <h3>Alex Morgan</h3>
+      <p>CEO & Co-founder</p>
+    </div>
+
+    <div class="team-card">
+      <div class="avatar purple">J</div>
+      <h3>Jamie Lee</h3>
+      <p>CTO & Co-founder</p>
+    </div>
+
+    <div class="team-card">
+      <div class="avatar orange">P</div>
+      <h3>Priya Sharma</h3>
+      <p>Head of Curriculum</p>
+    </div>
+
+    <div class="team-card">
+      <div class="avatar pink">K</div>
+      <h3>Kim Nguyen</h3>
+      <p>Lead Designer</p>
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="values-section">
+  <p class="section-tag">WHAT WE STAND FOR</p>
+  <h2 class="section-title">Our Core Values</h2>
+
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="icon">🌍</div>
+      <div>
+        <h4>Accessibility</h4>
+        <p>Education with no gatekeepers. Fair prices and free starter courses for all.</p>
+      </div>
+    </div>
+
+    <div class="value-item">
+      <div class="icon">🏆</div>
+      <div>
+        <h4>Excellence</h4>
+        <p>Every course reviewed and updated regularly to stay current and relevant.</p>
+      </div>
+    </div>
+
+    <div class="value-item">
+      <div class="icon">🤝</div>
+      <div>
+        <h4>Community</h4>
+        <p>Learn with peers. Share your work. Grow together in a global learning community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CORE VALUES (IMPROVED FULL WIDTH) -->
+<section class="values-wrapper">
+  <div class="values-box">
+    <p class="section-tag">WHAT WE STAND FOR</p>
+    <h2 class="section-title">Our Core Values</h2>
+
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="icon">🌍</div>
+        <div>
+          <h4>Accessibility</h4>
+          <p>Education with no gatekeepers. Fair prices and free starter courses for all.</p>
+        </div>
+      </div>
+
+      <div class="value-item">
+        <div class="icon">🏆</div>
+        <div>
+          <h4>Excellence</h4>
+          <p>Every course reviewed and updated regularly to stay current and relevant.</p>
+        </div>
+      </div>
+
+      <div class="value-item">
+        <div class="icon">🤝</div>
+        <div>
+          <h4>Community</h4>
+          <p>Learn with peers. Share your work. Grow together in a global learning community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-box">E</div>
+        <span>EduNova</span>
+      </div>
+      <p>
+        Empowering learners worldwide with high-quality, accessible education since 2020.
+      </p>
+
+      <div class="socials">
+        <span>𝕏</span>
+        <span>in</span>
+        <span>▶</span>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="footer-links">
+      <div>
+        <h4>Platform</h4>
+        <a href="#">Courses</a>
+        <a href="#">Certificates</a>
+        <a href="#">Instructors</a>
+        <a href="#">Pricing</a>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly updates on new courses and certifications.</p>
+
+      <div class="newsletter-box">
+        <input type="email" placeholder="your@email.com" />
+        <button>→</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>© 2025 EduNova, Inc. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+</body>
 </html>
