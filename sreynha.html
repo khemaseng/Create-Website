@@ -471,6 +471,7 @@ body.dark .footer {
   </div>
 </header>
 
+
   <!-- Hero -->
   <section class="hero">
     <div class="tag">Our Class</div>
@@ -658,8 +659,24 @@ body.dark .footer {
         <span>Study Group</span>
       </div>
     </div>
+    <!-- ===== JS ===== -->
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  const toggleLabel = document.getElementById("toggleLabel");
 
+  themeToggle.onclick = () => {
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    toggleLabel.textContent = isDark ? "Dark" : "Light";
+  };
+
+  const menuBtn = document.getElementById("menuToggle");
+  const nav = document.getElementById("navLinks");
+
+  menuBtn.onclick = () => {
+    nav.classList.toggle("active");
+  };
+</script>
   </div>
-  
 </body>
 </html>
