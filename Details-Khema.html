@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Course Curriculum — TechSkills</title>
+
+<!-- Tailwind (for Navbar + Footer) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class' }</script>
+
+<!-- Cabinet Grotesk (for curriculum section) -->
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ── CSS CUSTOM PROPERTIES ─────────────────────────────── */
+:root {
+  --ink:#0b0f1a; --ink-2:#1e2435; --ink-3:#374160;
+  --muted:#6b7498; --muted-2:#9aa3bf;
+  --bg:#f5f6fa; --surface:#ffffff; --surface-2:#f0f2f8;
+  --teal:#0abfa3; --teal-dark:#008c76;
+  --teal-dim:#e6f8f5; --teal-border:#b2ede6;
+  --green:#16a34a; --green-dim:#dcfce7;
+  --border:#e4e7f0;
+  --shadow:0 1px 3px rgba(11,15,26,.06),0 4px 16px rgba(11,15,26,.06);
+  --shadow-hover:0 2px 8px rgba(11,15,26,.08),0 12px 40px rgba(11,15,26,.12);
+  --r:14px; --r-sm:8px;
+}
+
+/* Dark mode overrides for the curriculum section */
+.dark {
+  --ink:#e8eaf2; --ink-2:#c8cde0; --ink-3:#a0a8c4;
+  --muted:#6b7498; --muted-2:#4a5270;
+  --bg:#0d0f18; --surface:#141720; --surface-2:#1c2030;
+  --teal-dim:#0a2a25; --teal-border:#0e4a40;
+  --teal-dark:#0fd4b5;
+  --green:#22c55e; --green-dim:#052010;
+  --border:#242840;
+  --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.2);
+  --shadow-hover:0 2px 8px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.3);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Cabinet Grotesk',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── SPACER below fixed navbar ─────────────────────────── */
+.nav-spacer { height: 64px; }
+
+/* ── CURRICULUM WRAPPER ────────────────────────────────── */
+.wrapper {
+  max-width:1100px;
+  margin:0 auto;
+  padding:40px 40px 60px;
+}
+
+.header-row { margin-bottom:28px; }
+.page-title { font-size:2rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:6px; }
+.page-meta  { color:var(--muted); font-size:.95rem; font-weight:500; }
+
+/* ── COURSE BLOCK ──────────────────────────────────────── */
+.course-block {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+  margin-bottom:10px;
+  box-shadow:var(--shadow);
+  transition:.22s;
+  animation:fadeUp .35s ease both;
+}
+.course-block:hover { box-shadow:var(--shadow-hover); transform:translateY(-1px); }
+.course-block.open  { border-color:var(--teal-border); box-shadow:var(--shadow-hover); }
+
+.course-header {
+  display:flex; align-items:center; gap:14px;
+  padding:18px 22px; cursor:pointer; user-select:none;
+  transition: background .15s;
+}
+.course-block.open .course-header {
+  background:linear-gradient(90deg,var(--teal-dim),var(--surface));
+  border-bottom:1px solid var(--teal-border);
+}
+
+.course-num {
+  width:36px; height:36px; border-radius:9px;
+  background:var(--ink-2); color:#fff;
+  font-weight:800; font-size:.78rem;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  transition: background .2s;
+}
+.course-block.open .course-num { background:linear-gradient(135deg,var(--teal-dark),var(--teal)); }
+
+.course-info { flex:1; min-width:0; }
+.course-name { font-weight:700; font-size:.95rem; margin-bottom:4px; line-height:1.3; }
+.course-sub  { display:flex; flex-wrap:wrap; align-items:center; }
+.course-tag  { font-size:.72rem; color:var(--muted); font-weight:600; }
+.course-tag+.course-tag::before { content:'·'; margin:0 7px; color:var(--border); }
+
+.course-right { display:flex; align-items:center; gap:8px; }
+.badge {
+  background:var(--surface-2); border:1px solid var(--border);
+  color:var(--ink-3); font-size:.7rem; font-weight:700;
+  padding:4px 9px; border-radius:50px; transition: all .2s;
+}
+.course-block.open .badge {
+  background:var(--teal-dim); border-color:var(--teal-border); color:var(--teal-dark);
+}
+
+.chevron {
+  width:26px; height:26px; border-radius:7px;
+  background:var(--surface-2); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.65rem; color:var(--muted); transition:.25s;
+}
+.course-block.open .chevron {
+  transform:rotate(180deg);
+  background:var(--teal-dim); border-color:var(--teal-border); color:var(--teal-dark);
+}
+
+/* ── LESSONS ───────────────────────────────────────────── */
+.lessons-wrap { display:none; }
+.course-block.open .lessons-wrap { display:block; }
+
+.lesson-row {
+  display:flex; align-items:center; gap:12px;
+  padding:11px 22px;
+  border-bottom:1px solid var(--border);
+  transition:.15s; cursor:pointer;
+}
+.lesson-row:last-child { border-bottom:none; }
+.lesson-row:hover { background:var(--surface-2); }
+
+.lesson-num {
+  width:22px; height:22px; border-radius:5px;
+  font-size:.65rem; font-weight:800;
+  color:var(--muted-2); background:var(--surface-2);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.lesson-row.free .lesson-num { background:var(--teal-dim); color:var(--teal-dark); }
+
+.lesson-icon {
+  width:26px; height:26px; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.7rem; flex-shrink:0;
+}
+.lesson-row.free .lesson-icon     { background:var(--teal-dim); }
+.lesson-row:not(.free) .lesson-icon { background:var(--surface-2); }
+
+.lesson-text { flex:1; min-width:0; }
+.lesson-name { font-size:.84rem; font-weight:600; line-height:1.35; }
+.lesson-desc { font-size:.72rem; color:var(--muted-2); margin-top:2px; }
+
+.lesson-end { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.free-tag {
+  background:var(--green-dim); color:var(--green);
+  border:1px solid #bbf7d0;
+  font-size:.63rem; font-weight:800; padding:2px 6px; border-radius:50px;
+}
+.lesson-dur { font-size:.75rem; color:var(--muted-2); min-width:40px; text-align:right; }
+
+/* ── ANIMATION ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.course-block:nth-child(1){animation-delay:.04s}
+.course-block:nth-child(2){animation-delay:.08s}
+.course-block:nth-child(3){animation-delay:.12s}
+.course-block:nth-child(4){animation-delay:.16s}
+.course-block:nth-child(5){animation-delay:.20s}
+.course-block:nth-child(6){animation-delay:.24s}
+.course-block:nth-child(7){animation-delay:.28s}
+.course-block:nth-child(8){animation-delay:.32s}
+.course-block:nth-child(9){animation-delay:.36s}
+.course-block:nth-child(10){animation-delay:.40s}
+
+/* ── RESPONSIVE ────────────────────────────────────────── */
+@media(max-width:768px){
+  .wrapper { padding:24px 16px 40px; }
+  .badge, .lesson-desc { display:none; }
+  .course-header { padding:14px 16px; }
+  .lesson-row { padding:10px 16px; }
+}
+</style>
+</head>
+
+<body class="transition-colors duration-300">
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVBAR  (Tailwind)
+═══════════════════════════════════════════════════════ -->
+<nav class="fixed top-0 w-full z-50 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-bold text-[#00FA9A]">TechSkills</a>
+
+    <!-- Desktop links -->
+    <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
+      <li><a href="#" class="hover:text-[#00FA9A] transition">Home</a></li>
+      <li><a href="#" class="hover:text-[#00FA9A] transition">Courses</a></li>
+      <li><a href="#" class="hover:text-[#00FA9A] transition text-[#00FA9A]">Details</a></li>
+      <li><a href="#" class="hover:text-[#00FA9A] transition">About</a></li>
+      <li><a href="#" class="hover:text-[#00FA9A] transition">Contact</a></li>
+    </ul>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+
+      <!-- Dark mode toggle -->
+      <button id="theme-toggle"
+        class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition-colors duration-300"
+        aria-label="Toggle dark mode">
+        <div id="toggle-circle"
+          class="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300"></div>
+      </button>
+
+      <!-- Login / Sign up (desktop) -->
+      <a href="#" class="hidden sm:block text-gray-700 dark:text-gray-200 hover:text-[#00FA9A] text-sm transition">Login</a>
+      <a href="#" class="hidden sm:block bg-[#00FA9A] hover:bg-[#00d487] text-black px-4 py-2 rounded-lg text-sm font-medium transition">Sign Up</a>
+
+      <!-- Hamburger (mobile) -->
+      <button id="menu-btn" class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+        <svg class="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile overlay -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu"
+    class="lg:hidden fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg transform -translate-y-full transition-transform duration-300 z-40">
+    <div class="px-6 py-6 flex flex-col gap-5 text-gray-700 dark:text-gray-200 font-medium">
+      <a href="#" class="hover:text-[#00FA9A] transition">Home</a>
+      <a href="#" class="hover:text-[#00FA9A] transition text-[#00FA9A]">Courses</a>
+      <a href="#" class="hover:text-[#00FA9A] transition">Details</a>
+      <a href="#" class="hover:text-[#00FA9A] transition">About</a>
+      <a href="#" class="hover:text-[#00FA9A] transition">Contact</a>
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-4 flex flex-col gap-3">
+        <a href="#" class="hover:text-[#00FA9A] transition">Login</a>
+        <a href="#" class="text-[#00FA9A] font-semibold">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer so content doesn't hide under fixed navbar -->
+<div class="nav-spacer"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     COURSE CURRICULUM  (custom CSS)
+═══════════════════════════════════════════════════════ -->
+<div class="wrapper">
+
+  <div class="header-row">
+    <h1 class="page-title">Course Curriculum</h1>
+    <span class="page-meta">10 courses · 79 lessons · 400+ hours</span>
+  </div>
+
+  <!-- COURSE 1 -->
+  <div class="course-block open" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">01</div>
+      <div class="course-info">
+        <div class="course-name">Artificial Intelligence & Machine Learning</div>
+        <div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">400h</span><span class="course-tag">Beginner → Advanced</span></div>
+      </div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">400h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Introduction to AI & ML Concepts</div><div class="lesson-desc">What is AI, history, types of ML, real-world applications</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">45m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Supervised vs Unsupervised Learning</div><div class="lesson-desc">Classification, regression, clustering — with Python demos</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Neural Networks & Deep Learning Fundamentals</div><div class="lesson-desc">Perceptrons, activation functions, backpropagation, TensorFlow intro</div></div><div class="lesson-end"><span class="lesson-dur">1h 30m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Natural Language Processing (NLP)</div><div class="lesson-desc">Tokenization, embeddings, sentiment analysis, transformers overview</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Computer Vision with CNNs</div><div class="lesson-desc">Image classification, object detection, OpenCV & PyTorch</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Reinforcement Learning Essentials</div><div class="lesson-desc">Agents, environments, rewards, Q-Learning, policy gradients</div></div><div class="lesson-end"><span class="lesson-dur">1h 05m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">ML Model Training, Tuning & Deployment</div><div class="lesson-desc">Hyperparameter search, cross-validation, MLflow, serving APIs</div></div><div class="lesson-end"><span class="lesson-dur">1h 40m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Build an AI-Powered App</div><div class="lesson-desc">End-to-end project from data collection to live prediction API</div></div><div class="lesson-end"><span class="lesson-dur">2h 00m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 2 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">02</div>
+      <div class="course-info"><div class="course-name">Data Science and Big Data Analytics</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">380h</span><span class="course-tag">Intermediate</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">380h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Data Science Fundamentals & Python Setup</div><div class="lesson-desc">Jupyter, Anaconda, numpy, pandas basics, EDA workflow</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">50m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Pandas, NumPy & Data Wrangling</div><div class="lesson-desc">Cleaning, merging, reshaping, missing data, outlier handling</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Data Visualization — Matplotlib & Seaborn</div><div class="lesson-desc">Charts, heatmaps, distributions, Plotly interactive dashboards</div></div><div class="lesson-end"><span class="lesson-dur">1h 05m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Statistical Analysis & Hypothesis Testing</div><div class="lesson-desc">Probability, distributions, t-tests, ANOVA, p-values</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Big Data with Apache Hadoop & Spark</div><div class="lesson-desc">HDFS, MapReduce, PySpark DataFrames, Spark SQL</div></div><div class="lesson-end"><span class="lesson-dur">1h 45m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">SQL & NoSQL for Data Engineers</div><div class="lesson-desc">PostgreSQL, MongoDB, query optimization, data modeling</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Building Data Pipelines with Airflow</div><div class="lesson-desc">DAGs, task scheduling, ETL orchestration, monitoring</div></div><div class="lesson-end"><span class="lesson-dur">1h 25m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Analytics Dashboard End-to-End</div><div class="lesson-desc">Data ingestion → transformation → visualization in production</div></div><div class="lesson-end"><span class="lesson-dur">1h 50m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 3 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">03</div>
+      <div class="course-info"><div class="course-name">Cloud Computing — AWS, Azure & GCP</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">250h</span><span class="course-tag">All Levels</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">250h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Cloud Architecture & Core Services Overview</div><div class="lesson-desc">IaaS, PaaS, SaaS, regions, availability zones, pricing models</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">40m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">AWS Deep Dive: EC2, S3, Lambda & IAM</div><div class="lesson-desc">Compute, storage, serverless functions, access control policies</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 30m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Azure Fundamentals & Microsoft Ecosystem</div><div class="lesson-desc">Azure VM, Blob Storage, Functions, Active Directory, cost management</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Google Cloud Platform & BigQuery</div><div class="lesson-desc">GCE, GCS, Cloud Run, BigQuery for analytics at scale</div></div><div class="lesson-end"><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Cloud Networking & Security Fundamentals</div><div class="lesson-desc">VPCs, subnets, security groups, encryption, compliance frameworks</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Serverless & Microservices Architecture</div><div class="lesson-desc">Event-driven design, API Gateway, messaging queues, service mesh</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Infrastructure as Code with Terraform</div><div class="lesson-desc">HCL syntax, state management, modules, multi-cloud provisioning</div></div><div class="lesson-end"><span class="lesson-dur">1h 15m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Deploy a Scalable 3-Tier App</div><div class="lesson-desc">Load balancer → app servers → managed DB, auto-scaling, monitoring</div></div><div class="lesson-end"><span class="lesson-dur">1h 45m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 4 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">04</div>
+      <div class="course-info"><div class="course-name">Full-Stack Web Development</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">500h</span><span class="course-tag">Beginner → Pro</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">500h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">HTML, CSS & JavaScript Foundations</div><div class="lesson-desc">Semantic HTML5, CSS Grid/Flexbox, ES6+ JS features, DOM manipulation</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">React — Components, Hooks & State Management</div><div class="lesson-desc">Functional components, useState/useEffect, Context, Redux Toolkit</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 30m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Node.js & Express — Backend Fundamentals</div><div class="lesson-desc">HTTP, middleware, routing, MVC pattern, error handling</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">REST API Design & Authentication</div><div class="lesson-desc">CRUD endpoints, JWT, OAuth2, API versioning, rate limiting</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Databases — PostgreSQL & MongoDB</div><div class="lesson-desc">Schema design, ORMs, aggregations, indexing, transactions</div></div><div class="lesson-end"><span class="lesson-dur">1h 15m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">TypeScript for Full-Stack Apps</div><div class="lesson-desc">Types, interfaces, generics, decorators, strict mode patterns</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Testing, CI/CD & Deployment</div><div class="lesson-desc">Jest, Cypress, GitHub Actions pipeline, Vercel & Railway deploy</div></div><div class="lesson-end"><span class="lesson-dur">1h 25m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Ship a Full-Stack SaaS Product</div><div class="lesson-desc">Auth, billing, dashboard, file uploads — production-ready codebase</div></div><div class="lesson-end"><span class="lesson-dur">2h 30m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 5 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">05</div>
+      <div class="course-info"><div class="course-name">Mobile App Development</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">380h</span><span class="course-tag">Intermediate</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">380h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">React Native & Flutter — Platform Comparison</div><div class="lesson-desc">Pros/cons, architecture, when to choose each, setup & tooling</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">50m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Building Your First React Native App</div><div class="lesson-desc">Navigation, StyleSheet, FlatList, device APIs, Expo workflow</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Flutter & Dart — Widgets & State</div><div class="lesson-desc">Stateless vs stateful widgets, Provider, Riverpod, BLoC pattern</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">iOS & Android Architecture Differences</div><div class="lesson-desc">Native modules, permissions model, push notifications, background tasks</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Offline Storage, APIs & Authentication</div><div class="lesson-desc">AsyncStorage, SQLite, REST integration, Firebase Auth, OAuth</div></div><div class="lesson-end"><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Animations, Gestures & UX Polish</div><div class="lesson-desc">Reanimated 3, gesture handler, micro-interactions, skeleton loading</div></div><div class="lesson-end"><span class="lesson-dur">50m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Performance Optimization & Testing</div><div class="lesson-desc">Profiling, memoization, Detox E2E testing, crash reporting</div></div><div class="lesson-end"><span class="lesson-dur">45m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Publishing to App Store & Google Play</div><div class="lesson-desc">Signing, ASO, screenshots, review guidelines, OTA updates</div></div><div class="lesson-end"><span class="lesson-dur">1h 00m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 6 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">06</div>
+      <div class="course-info"><div class="course-name">Cybersecurity & Ethical Hacking</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">420h</span><span class="course-tag">Intermediate → Advanced</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">420h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Cybersecurity Foundations & Threat Landscape</div><div class="lesson-desc">CIA triad, attack vectors, OWASP Top 10, security mindset</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Networking Fundamentals for Security</div><div class="lesson-desc">TCP/IP, DNS, HTTP(S), Wireshark packet analysis, port scanning</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 05m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Penetration Testing Methodology</div><div class="lesson-desc">Reconnaissance, scanning, exploitation, post-exploit, reporting</div></div><div class="lesson-end"><span class="lesson-dur">1h 30m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Web Application Attacks & Defense</div><div class="lesson-desc">SQL injection, XSS, CSRF, broken auth, Burp Suite hands-on</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Network Security & Firewalls</div><div class="lesson-desc">Firewall rules, IDS/IPS, VPN setup, VLAN segmentation, zero trust</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Cryptography in Practice</div><div class="lesson-desc">Symmetric/asymmetric encryption, PKI, TLS handshake, hashing</div></div><div class="lesson-end"><span class="lesson-dur">50m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Malware Analysis & Reverse Engineering</div><div class="lesson-desc">Static vs dynamic analysis, disassembly, sandbox environments</div></div><div class="lesson-end"><span class="lesson-dur">1h 15m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Full Penetration Test Report</div><div class="lesson-desc">End-to-end pentest on a vulnerable VM — professional report writing</div></div><div class="lesson-end"><span class="lesson-dur">2h 00m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 7 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">07</div>
+      <div class="course-info"><div class="course-name">Blockchain Development</div><div class="course-sub"><span class="course-tag">7 lessons</span><span class="course-tag">300h</span><span class="course-tag">Intermediate</span></div></div>
+      <div class="course-right"><span class="badge">7 lessons</span><span class="badge">300h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Blockchain & Distributed Ledger Fundamentals</div><div class="lesson-desc">Consensus, hashing, blocks, nodes, public vs private chains</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">40m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Solidity — Writing Smart Contracts</div><div class="lesson-desc">Types, functions, events, modifiers, Remix IDE hands-on</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Ethereum, EVM & Gas Optimization</div><div class="lesson-desc">Transactions, ABI, bytecode, gas costs, efficient patterns</div></div><div class="lesson-end"><span class="lesson-dur">1h 05m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">DeFi — Protocols, Tokens & Liquidity</div><div class="lesson-desc">ERC-20/721, AMMs, lending protocols, yield farming mechanics</div></div><div class="lesson-end"><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">NFTs & Digital Ownership</div><div class="lesson-desc">Metadata, IPFS storage, ERC-721 minting, marketplace integration</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Web3 Frontend with ethers.js & Wagmi</div><div class="lesson-desc">Wallet connect, contract calls, transaction feedback, React hooks</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Launch a Token & dApp</div><div class="lesson-desc">Full deploy to testnet — token contract + React frontend + Hardhat</div></div><div class="lesson-end"><span class="lesson-dur">1h 40m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 8 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">08</div>
+      <div class="course-info"><div class="course-name">DevOps Engineering</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">380h</span><span class="course-tag">Intermediate → Advanced</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">380h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">DevOps Culture & CI/CD Pipeline Design</div><div class="lesson-desc">Agile, Kanban, DevSecOps, pipeline stages, branching strategy</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Docker & Containerization Mastery</div><div class="lesson-desc">Images, containers, Dockerfile, multi-stage builds, volumes, networks</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Kubernetes — Container Orchestration</div><div class="lesson-desc">Pods, deployments, services, ingress, Helm charts, autoscaling</div></div><div class="lesson-end"><span class="lesson-dur">1h 50m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">GitHub Actions & Jenkins Pipelines</div><div class="lesson-desc">Workflow YAML, matrix builds, secrets management, artifact publishing</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Terraform & Infrastructure as Code</div><div class="lesson-desc">State files, modules, remote backends, drift detection, Atlantis</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Monitoring, Logging & Alerting</div><div class="lesson-desc">Prometheus, Grafana, ELK stack, distributed tracing, SLOs</div></div><div class="lesson-end"><span class="lesson-dur">1h 05m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Site Reliability Engineering (SRE)</div><div class="lesson-desc">Error budgets, incident response, chaos engineering, runbooks</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Full DevOps Pipeline in Production</div><div class="lesson-desc">Code → CI/CD → K8s deploy → monitor — zero-downtime deployment</div></div><div class="lesson-end"><span class="lesson-dur">2h 10m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 9 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">09</div>
+      <div class="course-info"><div class="course-name">Java Programming — Core to Advanced</div><div class="course-sub"><span class="course-tag">8 lessons</span><span class="course-tag">250h</span><span class="course-tag">Beginner → Advanced</span></div></div>
+      <div class="course-right"><span class="badge">8 lessons</span><span class="badge">250h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Java Fundamentals & Object-Oriented Programming</div><div class="lesson-desc">JVM, data types, classes, inheritance, polymorphism, encapsulation</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Collections Framework & Generics</div><div class="lesson-desc">List, Map, Set, Queue, comparators, generics, type bounds</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 15m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Streams, Lambdas & Functional Java</div><div class="lesson-desc">Functional interfaces, method references, Optional, Stream API pipelines</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Concurrency & Multithreading</div><div class="lesson-desc">Threads, ExecutorService, CompletableFuture, locks, deadlock avoidance</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Design Patterns in Java</div><div class="lesson-desc">Creational, structural, behavioral patterns with real-world use cases</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Spring Boot — REST APIs & Data Layer</div><div class="lesson-desc">Controllers, services, repositories, JPA, H2/PostgreSQL, Swagger</div></div><div class="lesson-end"><span class="lesson-dur">1h 30m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Testing — JUnit 5, Mockito & Integration Tests</div><div class="lesson-desc">Unit tests, mocking, test containers, code coverage, TDD workflow</div></div><div class="lesson-end"><span class="lesson-dur">50m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">8</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Microservices with Spring Cloud</div><div class="lesson-desc">Service discovery, API gateway, circuit breaker, Docker-compose deploy</div></div><div class="lesson-end"><span class="lesson-dur">1h 50m</span></div></div>
+    </div>
+  </div>
+
+  <!-- COURSE 10 -->
+  <div class="course-block" onclick="toggle(this)">
+    <div class="course-header">
+      <div class="course-num">10</div>
+      <div class="course-info"><div class="course-name">Linux System Administration</div><div class="course-sub"><span class="course-tag">7 lessons</span><span class="course-tag">220h</span><span class="course-tag">Beginner → Intermediate</span></div></div>
+      <div class="course-right"><span class="badge">7 lessons</span><span class="badge">220h</span><div class="chevron">▼</div></div>
+    </div>
+    <div class="lessons-wrap">
+      <div class="lesson-row free"><div class="lesson-num">1</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">Linux Fundamentals & Shell Commands</div><div class="lesson-desc">Filesystem hierarchy, ls/cd/grep/awk/sed, pipes, redirection</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">50m</span></div></div>
+      <div class="lesson-row free"><div class="lesson-num">2</div><div class="lesson-icon">▶</div><div class="lesson-text"><div class="lesson-name">File Systems, Permissions & User Management</div><div class="lesson-desc">chmod, chown, ACLs, sudo, groups, PAM, disk partitioning</div></div><div class="lesson-end"><span class="free-tag">FREE</span><span class="lesson-dur">1h 00m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">3</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Process Management & System Monitoring</div><div class="lesson-desc">ps, top, htop, systemd, cron jobs, log files, journalctl</div></div><div class="lesson-end"><span class="lesson-dur">55m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">4</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Networking on Linux</div><div class="lesson-desc">ifconfig, ip, netstat, SSH hardening, iptables, DNS config</div></div><div class="lesson-end"><span class="lesson-dur">1h 10m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">5</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Shell Scripting & Automation</div><div class="lesson-desc">Bash scripts, variables, loops, functions, cron automation, regex</div></div><div class="lesson-end"><span class="lesson-dur">1h 20m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">6</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Web Server Setup — Nginx & Apache</div><div class="lesson-desc">Virtual hosts, SSL/TLS with Let's Encrypt, reverse proxy, load balancing</div></div><div class="lesson-end"><span class="lesson-dur">1h 05m</span></div></div>
+      <div class="lesson-row"><div class="lesson-num">7</div><div class="lesson-icon">🔒</div><div class="lesson-text"><div class="lesson-name">Capstone: Harden & Deploy a Linux Server</div><div class="lesson-desc">Security audit checklist, fail2ban, monitoring agent, automated backups</div></div><div class="lesson-end"><span class="lesson-dur">1h 30m</span></div></div>
+    </div>
+  </div>
+
+</div><!-- end .wrapper -->
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER  (Tailwind)
+═══════════════════════════════════════════════════════ -->
+<footer>
+
+  <!-- Top footer -->
+  <div class="bg-gray-900 text-gray-300 py-14">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- About -->
+        <div>
+          <h1 class="text-3xl font-bold text-white mb-5">TechSkills</h1>
+          <p class="leading-7 text-gray-400">
+            TechSkills is a modern E-Learning platform focused on Information Technology
+            and Computer Science education. Our platform helps students and developers
+            learn programming, cloud technologies, cybersecurity, artificial intelligence,
+            and software engineering through practical online courses and real-world projects.
+          </p>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">Company</h2>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-indigo-400 transition">About Us</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Our Courses</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Career Paths</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Courses -->
+        <div>
+          <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">Courses</h2>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-indigo-400 transition">Artificial Intelligence & Machine Learning</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Data Science & Big Data Analytics</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Cloud Computing (AWS / Azure / GCP)</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Full-Stack Development</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Mobile App Development</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Cybersecurity & Ethical Hacking</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Blockchain Development</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">DevOps Engineering</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Java Programming</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Linux System Administration</a></li>
+          </ul>
+        </div>
+
+        <!-- Connect -->
+        <div>
+          <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">Connect With Us</h2>
+          <p class="text-gray-400 leading-7 mb-4">
+            Stay connected with TechSkills to get the latest updates on IT & Computer Science
+            courses, tutorials, and learning resources.
+          </p>
+          <p class="text-gray-400 leading-7 mb-5">
+            Find us on Google by searching
+            <span class="text-white font-semibold">"TechSkills E-Learning"</span>.
+          </p>
+          <p class="text-gray-500 text-sm">We are always updating new courses to help you build real-world tech skills.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom footer -->
+  <div class="bg-indigo-700 text-white py-5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+        <p>© 2026 TechSkills. All Rights Reserved.</p>
+        <p>Learn IT Skills. Build Your Future.</p>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════ -->
+<script>
+/* ── Curriculum accordion ──────────────────────────── */
+function toggle(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.course-block').forEach(b => b.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ── Mobile nav ────────────────────────────────────── */
+const menuBtn    = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const overlay    = document.getElementById('overlay');
+
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.remove('-translate-y-full');
+  overlay.classList.remove('hidden');
+});
+overlay.addEventListener('click', () => {
+  mobileMenu.classList.add('-translate-y-full');
+  overlay.classList.add('hidden');
+});
+
+/* ── Dark mode — syncs Tailwind `dark` class + CSS vars ── */
+const themeToggle = document.getElementById('theme-toggle');
+const toggleCircle = document.getElementById('toggle-circle');
+
+function applyTheme(dark) {
+  if (dark) {
+    document.documentElement.classList.add('dark');
+    toggleCircle.classList.add('translate-x-6');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+    toggleCircle.classList.remove('translate-x-6');
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+/* Restore saved preference or detect system preference */
+const saved = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(saved ? saved === 'dark' : prefersDark);
+
+themeToggle.addEventListener('click', () => {
+  applyTheme(!document.documentElement.classList.contains('dark'));
+});
+</script>
+
+</body>
+</html>
