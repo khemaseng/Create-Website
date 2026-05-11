@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            overflow: hidden;
+        }
+
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .java {
+            background: linear-gradient(45deg, #8e2de2, #4a00e0);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: rgb(31, 30, 30);
+        }
+
+        .desc {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  darkMode: 'class'
+}
+</script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+
+  <!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- LOGO -->
+    <a href="#" class="text-2xl font-bold text-[#00FA9A]">
+      TechSkills
+    </a>
+
+    <!-- DESKTOP MENU -->
+    <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
+      <li><a class="hover:text-[#00FA9A]" href="#">Home</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">Courses</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">Details</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">About</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">Contact</a></li>
+    </ul>
+
+    <!-- RIGHT SIDE -->
+    <div class="flex items-center gap-3">
+
+      <!-- DARK MODE TOGGLE -->
+      <button id="theme-toggle"
+        class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition">
+        <div id="toggle-circle"
+          class="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300">
+        </div>
+      </button>
+
+      <!-- LOGIN -->
+      <a href="#" class="hidden sm:block text-gray-700 dark:text-gray-200 hover:text-[#00FA9A] text-sm">
+        Login
+      </a>
+
+      <!-- SIGN UP -->
+      <a href="#" class="hidden sm:block bg-[#00FA9A] hover:bg-[#00d487] text-black px-4 py-2 rounded-lg text-sm font-medium">
+        Sign Up
+      </a>
+
+      <!-- MOBILE BUTTON -->
+      <button id="menu-btn" class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
+        <svg class="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu"
+    class="lg:hidden fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg transform -translate-y-full transition-transform duration-300">
+
+    <div class="px-6 py-6 flex flex-col gap-5 text-gray-700 dark:text-gray-200 font-medium">
+
+      <a href="#" class="hover:text-[#00FA9A]">Home</a>
+      <a href="#" class="hover:text-[#00FA9A]">Courses</a>
+      <a href="#" class="hover:text-[#00FA9A]">Details</a>
+      <a href="#" class="hover:text-[#00FA9A]">About</a>
+      <a href="#" class="hover:text-[#00FA9A]">Contact</a>
+
+      <div class="border-t pt-4 flex flex-col gap-3">
+        <a href="#">Login</a>
+        <a href="#" class="text-[#00FA9A] font-semibold">Sign Up</a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- SPACER -->
+<div class="h-20"></div>
+
+<!-- SCRIPT -->
+<script>
+const menuBtn = document.getElementById("menu-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+const overlay = document.getElementById("overlay");
+
+function openMenu() {
+  mobileMenu.classList.remove("-translate-y-full");
+  overlay.classList.remove("hidden");
+}
+
+function closeMenu() {
+  mobileMenu.classList.add("-translate-y-full");
+  overlay.classList.add("hidden");
+}
+
+menuBtn.addEventListener("click", openMenu);
+overlay.addEventListener("click", closeMenu);
+
+// DARK MODE
+const toggle = document.getElementById("theme-toggle");
+const circle = document.getElementById("toggle-circle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark");
+  circle.classList.add("translate-x-6");
+}
+
+
+toggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+
+  if (document.documentElement.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    circle.classList.add("translate-x-6");
+  } else {
+    localStorage.setItem("theme", "light");
+    circle.classList.remove("translate-x-6");
+  }
+});
+</script>
+
+    <h1>Explore Our Tech Courses</h1>
+    <div class="container">
+        <div class="card">
+            <div class="card-header ai">
+                <img src="https://static.vecteezy.com/system/resources/previews/024/110/454/original/concept-ai-machine-learning-artificial-intelligence-robot-learning-network-system-advance-ai-on-blue-futuristic-modern-hi-tech-background-vector.jpg"
+                    alt="AI">
+            </div>
+            <div class="card-body">
+                <div class="title"> Artificial Intelligence(AI) & Machine Learning(ML)</div>
+                <div class="desc">AI is a broader concept, aiming to simulate human intelligence in machines. ML is a subset of AI, focusing on creating algorithms that allow machines to learn from data.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header data">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/147/389/small_2x/technology-science-logo-with-data-concept-vector.jpg"
+                    alt="Data">
+            </div>
+            <div class="card-body">
+                <div class="title">Data Science and Big Data Analytics</div>
+                <div class="desc">Data Science and Big Data Analytics are closely related fields that focus on extracting useful insights from data but they differ slightly in scope and scale.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header cloud">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.orBRfZIrWqwHuk3caBS4dQHaE8?pid=Api&P=0&h=220" alt="cloud">
+            </div>
+            <div class="card-body">
+                <div class="title"> Cloud Computing (AWS/Azure/GCP)</div>
+                <div class="desc">Cloud computing is on-demand access to computing resources-physical or virtual servers, data storage, networking capabilities, application development tools, software, AI-powered analytic platforms and more-over the internet with pay-per-use pricing.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header web">
+                <img src="https://www.xavor.com/wp-content/uploads/2022/11/full-stack-development-2.jpg" alt="full">
+            </div>
+            <div class="card-body">
+                <div class="title">Full-Stack Development</div>
+                <div class="desc">Full-Stack Development is the ability to build both the front-end and back-end parts of a web application.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header mobile"><img
+                    src="https://adapty.io/assets/uploads/2023/10/mobile-app-development-frameworks-cover.webp"
+                    alt="mobile"></div>
+            <div class="card-body">
+                <div class="title">Mobile Development</div>
+                <div class="desc">Mobile development is the process of making software for smartphones, tablets and digital assistants, most commonly for the Android and iOS operating systems.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header security"><img
+                    src="https://img.freepik.com/premium-vector/cyber-security-vector-logo-met-schild-en-vinkje-beveiligingsschild-concept-internetbeveiliging_100456-10542.jpg?w=2000"
+                    alt=""></div>
+            <div class="card-body">
+                <div class="title">Cybersecurity/Ethical Hacking</div>
+                <div class="desc">Cybersecurity is the practice of protecting critical systems and sensitive information from digital attacks. </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header blockchain"><img
+                    src="https://static.vecteezy.com/system/resources/previews/000/544/073/non_2x/blockchain-logo-on-dark-black-background-abstract-symbol-of-linked-chain-and-with-text-modern-technology-concept-vector-illustration-for-company-logo.jpg"
+                    alt=""></div>
+            <div class="card-body">
+                <div class="title">Blockchain Development</div>
+                <div class="desc">Blockchain technology is an advanced database mechanism that allows transparent information sharing within a business network.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header devops"><img
+                    src="https://ares.decipherzone.com/blog-manager/uploads/banner_webp_51ddbe10-6b83-4d6c-b762-ab26ab3a62b9.webp"
+                    alt=""></div>
+            <div class="card-body">
+                <div class="title">DevOps Engineering</div>
+                <div class="desc">DevOps engineering is a software development approach that integrates development and operations teams, emphasizing collaboration, automation, and continuous delivery. </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header java"><img
+                    src="https://static.vecteezy.com/system/resources/previews/022/100/214/original/java-logo-transparent-free-png.png"
+                    alt=""></div>
+            <div class="card-body">
+                <div class="title">Java Programming</div>
+                <div class="desc">Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header linux"><img src="https://sureshitacademy.com/wp-content/uploads/2024/05/6.png"
+                    alt=""></div>
+            <div class="card-body">
+                <div class="title">Linux System Administration</div>
+                <div class="desc">Linux is a family of open-source Unix-like operating systems based on the Linux kernel. Linux is typically packaged in a Linux distribution.Manage servers and systems.</div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+  <footer class="mt-20">
+
+    <!-- TOP FOOTER -->
+    <div class="bg-gray-900 text-gray-300 py-14">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          <!-- ABOUT -->
+          <div>
+            <h1 class="text-3xl font-bold text-white mb-5">
+              TechSkills
+            </h1>
+
+            <p class="leading-7 text-gray-400">
+              TechSkills is a modern E-Learning platform focused on
+              Information Technology and Computer Science education.
+              Our platform helps students and developers learn
+              programming, cloud technologies, cybersecurity,
+              artificial intelligence, and software engineering
+              through practical online courses and real-world projects.
+            </p>
+          </div>
+
+          <!-- COMPANY -->
+          <div>
+            <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
+              Company
+            </h2>
+
+            <ul class="space-y-3">
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  About Us
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Our Courses
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Career Paths
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Privacy Policy
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Contact Us
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- COURSES -->
+          <div>
+            <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
+              Courses
+            </h2>
+
+            <ul class="space-y-3">
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Artificial Intelligence (AI) & Machine Learning (ML)
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Data Science & Big Data Analytics
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Cloud Computing (AWS / Azure / GCP)
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Full-Stack Development
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Mobile App Development
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Cybersecurity & Ethical Hacking
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Blockchain Development
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  DevOps Engineering
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Java Programming
+                </a>
+              </li>
+
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Linux System Administration
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        <!-- SOCIAL / CONNECT -->
+          <div>
+  <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
+    Connect With Us
+  </h2>
+
+  <p class="text-gray-400 leading-7 mb-4">
+    Stay connected with TechSkills to get the latest updates on IT & Computer Science courses,
+    tutorials, and learning resources.
+  </p>
+
+  <p class="text-gray-400 leading-7 mb-5">
+    You can also find our learning platform easily on Google by searching
+    <span class="text-white font-semibold">“TechSkills E-Learning”</span>.
+  </p>
+
+  <p class="text-gray-500 text-sm">
+    We are always updating new courses to help you build real-world tech skills.
+  </p>
+     </div>
+    </div>
+
+    <!-- BOTTOM FOOTER -->
+    <div class="bg-indigo-700 text-white py-5">
+
+      <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+
+          <p>
+            © 2026 TechSkills. All Rights Reserved.
+          </p>
+
+          <p>
+            Learn IT Skills. Build Your Future. 
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
