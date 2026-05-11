@@ -1,502 +1,1015 @@
-<!doctype html>
-<html lang="en" class="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="./src/output.css" />
-
-    <style>
-      /* Default font for the whole page */
-      body {
-        font-family: "DM Sans", sans-serif;
-        line-height: 1.6;
+/*! tailwindcss v4.2.4 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    --color-red-400: oklch(70.4% 0.191 22.216);
+    --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-green-50: oklch(98.2% 0.018 155.826);
+    --color-green-100: oklch(96.2% 0.044 156.743);
+    --color-green-200: oklch(92.5% 0.084 155.995);
+    --color-green-300: oklch(87.1% 0.15 154.449);
+    --color-green-400: oklch(79.2% 0.209 151.711);
+    --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-green-600: oklch(62.7% 0.194 149.214);
+    --color-green-700: oklch(52.7% 0.154 150.069);
+    --color-green-800: oklch(44.8% 0.119 151.328);
+    --color-green-900: oklch(39.3% 0.095 152.535);
+    --color-green-950: oklch(26.6% 0.065 152.934);
+    --color-blue-100: oklch(93.2% 0.032 255.585);
+    --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
+    --color-blue-500: oklch(62.3% 0.214 259.815);
+    --color-blue-600: oklch(54.6% 0.245 262.881);
+    --color-blue-700: oklch(48.8% 0.243 264.376);
+    --color-blue-900: oklch(37.9% 0.146 265.522);
+    --color-blue-950: oklch(28.2% 0.091 267.935);
+    --color-slate-50: oklch(98.4% 0.003 247.858);
+    --color-slate-100: oklch(96.8% 0.007 247.896);
+    --color-slate-200: oklch(92.9% 0.013 255.508);
+    --color-slate-300: oklch(86.9% 0.022 252.894);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
+    --color-gray-300: oklch(87.2% 0.01 258.338);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-gray-900: oklch(21% 0.034 264.665);
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --container-4xl: 56rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+    --leading-tight: 1.25;
+    --leading-relaxed: 1.625;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
       }
-
-      /* Serif font used on h1 / h2 headings */
-      .font-serif {
-        font-family: "Playfair Display", serif;
-      }
-
-      /* ── Hover slide animation on contact-info rows ───────────────── */
-      .info-item {
-        transition: transform 0.25s;
-      }
-      .info-item:hover {
-        transform: translateX(4px);
-      }
-
-      /* ── Hover lift animation on social icon buttons ──────────────── */
-      .social-btn {
-        transition:
-          transform 0.25s,
-          background 0.25s,
-          box-shadow 0.25s;
-      }
-      .social-btn:hover {
-        transform: translateY(-3px);
-      }
-      .social-btn:active {
-        transform: translateY(-1px);
-      }
-
-      /* ── Hover lift animation on the Send / submit button ─────────── */
-      .send-btn {
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s,
-          background 0.2s;
-      }
-      .send-btn:hover {
-        transform: translateY(-2px);
-      }
-      .send-btn:active {
-        transform: none;
-      }
-
-      /* ── Social platform branded hover background colors ──────────── */
-      /* Telegram   official blue  */
-      .btn-telegram:hover {
-        background-color: #0088cc;
-        border-color: #0088cc;
-      }
-      /* TikTok     branded gradient */
-      .btn-tiktok:hover {
-        background: linear-gradient(135deg, #010101, #69c9d0, #ee1d52);
-        border-color: #69c9d0;
-      }
-      /* Messenger  purple-blue gradient */
-      .btn-messenger:hover {
-        background: linear-gradient(135deg, #0099ff, #a033ff);
-        border-color: #0099ff;
-      }
-      /* WhatsApp   official green */
-      .btn-whatsapp:hover {
-        background-color: #25d366;
-        border-color: #25d366;
-      }
-
-      /* ── Success card fade-in animation ───────────────────────────── */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-8px);
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .pointer-events-none {
+    pointer-events: none;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+  .sticky {
+    position: sticky;
+  }
+  .start {
+    inset-inline-start: var(--spacing);
+  }
+  .-top-14 {
+    top: calc(var(--spacing) * -14);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .-right-14 {
+    right: calc(var(--spacing) * -14);
+  }
+  .-bottom-10 {
+    bottom: calc(var(--spacing) * -10);
+  }
+  .-left-10 {
+    left: calc(var(--spacing) * -10);
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .z-50 {
+    z-index: 50;
+  }
+  .mb-0\.5 {
+    margin-bottom: calc(var(--spacing) * 0.5);
+  }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
+  }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
+  .mb-3 {
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-5 {
+    margin-bottom: calc(var(--spacing) * 5);
+  }
+  .mb-6 {
+    margin-bottom: calc(var(--spacing) * 6);
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .hidden {
+    display: none;
+  }
+  .inline-block {
+    display: inline-block;
+  }
+  .h-4 {
+    height: calc(var(--spacing) * 4);
+  }
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
+  }
+  .h-36 {
+    height: calc(var(--spacing) * 36);
+  }
+  .h-48 {
+    height: calc(var(--spacing) * 48);
+  }
+  .h-\[30px\] {
+    height: 30px;
+  }
+  .min-h-\[calc\(100vh-65px\)\] {
+    min-height: calc(100vh - 65px);
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .w-4 {
+    width: calc(var(--spacing) * 4);
+  }
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
+  }
+  .w-36 {
+    width: calc(var(--spacing) * 36);
+  }
+  .w-48 {
+    width: calc(var(--spacing) * 48);
+  }
+  .w-\[30px\] {
+    width: 30px;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
+  }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .cursor-default {
+    cursor: default;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .resize-none {
+    resize: none;
+  }
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-1\.5 {
+    gap: calc(var(--spacing) * 1.5);
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
+  .gap-5 {
+    gap: calc(var(--spacing) * 5);
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
+  .rounded-3xl {
+    border-radius: var(--radius-3xl);
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .rounded-md {
+    border-radius: var(--radius-md);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-none {
+    --tw-border-style: none;
+    border-style: none;
+  }
+  .border-green-100 {
+    border-color: var(--color-green-100);
+  }
+  .border-green-200 {
+    border-color: var(--color-green-200);
+  }
+  .border-green-300 {
+    border-color: var(--color-green-300);
+  }
+  .border-red-400 {
+    border-color: var(--color-red-400);
+  }
+  .border-white\/10 {
+    border-color: color-mix(in srgb, #fff 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+    }
+  }
+  .bg-green-50 {
+    background-color: var(--color-green-50);
+  }
+  .bg-green-400 {
+    background-color: var(--color-green-400);
+  }
+  .bg-green-400\/20 {
+    background-color: color-mix(in srgb, oklch(79.2% 0.209 151.711) 20%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-green-400) 20%, transparent);
+    }
+  }
+  .bg-green-600 {
+    background-color: var(--color-green-600);
+  }
+  .bg-green-800 {
+    background-color: var(--color-green-800);
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .bg-white\/5 {
+    background-color: color-mix(in srgb, #fff 5%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+    }
+  }
+  .fill-green-300 {
+    fill: var(--color-green-300);
+  }
+  .fill-white {
+    fill: var(--color-white);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
+  .px-1 {
+    padding-inline: calc(var(--spacing) * 1);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
+  .py-1 {
+    padding-block: calc(var(--spacing) * 1);
+  }
+  .py-1\.5 {
+    padding-block: calc(var(--spacing) * 1.5);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
+  .py-3\.5 {
+    padding-block: calc(var(--spacing) * 3.5);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .leading-relaxed {
+    --tw-leading: var(--leading-relaxed);
+    line-height: var(--leading-relaxed);
+  }
+  .leading-tight {
+    --tw-leading: var(--leading-tight);
+    line-height: var(--leading-tight);
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .font-medium {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .tracking-wide {
+    --tw-tracking: var(--tracking-wide);
+    letter-spacing: var(--tracking-wide);
+  }
+  .tracking-wider {
+    --tw-tracking: var(--tracking-wider);
+    letter-spacing: var(--tracking-wider);
+  }
+  .tracking-widest {
+    --tw-tracking: var(--tracking-widest);
+    letter-spacing: var(--tracking-widest);
+  }
+  .text-gray-500 {
+    color: var(--color-gray-500);
+  }
+  .text-gray-700 {
+    color: var(--color-gray-700);
+  }
+  .text-gray-800 {
+    color: var(--color-gray-800);
+  }
+  .text-green-300 {
+    color: var(--color-green-300);
+  }
+  .text-green-600 {
+    color: var(--color-green-600);
+  }
+  .text-green-700 {
+    color: var(--color-green-700);
+  }
+  .text-green-800 {
+    color: var(--color-green-800);
+  }
+  .text-green-900 {
+    color: var(--color-green-900);
+  }
+  .text-red-500 {
+    color: var(--color-red-500);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .text-white\/40 {
+    color: color-mix(in srgb, #fff 40%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-white) 40%, transparent);
+    }
+  }
+  .text-white\/50 {
+    color: color-mix(in srgb, #fff 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-white) 50%, transparent);
+    }
+  }
+  .text-white\/70 {
+    color: color-mix(in srgb, #fff 70%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-white) 70%, transparent);
+    }
+  }
+  .text-white\/90 {
+    color: color-mix(in srgb, #fff 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-white) 90%, transparent);
+    }
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .no-underline {
+    text-decoration-line: none;
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .placeholder-gray-400 {
+    &::placeholder {
+      color: var(--color-gray-400);
+    }
+  }
+  .opacity-10 {
+    opacity: 10%;
+  }
+  .shadow-2xl {
+    --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0_2px_8px_rgba\(22\,101\,52\,0\.4\)\] {
+    --tw-shadow: 0 2px 8px var(--tw-shadow-color, rgba(22,101,52,0.4));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .transition {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  .hover\:border-green-400\/30 {
+    &:hover {
+      @media (hover: hover) {
+        border-color: color-mix(in srgb, oklch(79.2% 0.209 151.711) 30%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          border-color: color-mix(in oklab, var(--color-green-400) 30%, transparent);
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+      }
+    }
+  }
+  .hover\:bg-green-100 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-green-100);
+      }
+    }
+  }
+  .hover\:bg-green-400\/10 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, oklch(79.2% 0.209 151.711) 10%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-green-400) 10%, transparent);
         }
       }
-      .fade-in {
-        animation: fadeIn 0.4s ease;
+    }
+  }
+  .hover\:bg-green-700 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-green-700);
       }
-    </style>
-  </head>
-
-  <body
-    class="min-h-screen bg-green-50 dark:bg-[#071a0d] text-green-900 dark:text-green-100 transition-colors duration-300"
-  >
-    <!-- ══════════════════════════════════════════════════════════════
-         NAVBAR
-         ══════════════════════════════════════════════════════════════ -->
-    <header
-      class="border-b border-green-200 dark:border-green-900 bg-white dark:bg-[#0a1f11] px-6 py-4 flex items-center justify-between sticky top-0 z-50 transition-colors duration-300"
-    >
-      <!-- Logo -->
-      <div class="flex items-center gap-2">
-        <div
-          class="w-[30px] h-[30px] rounded-lg bg-green-800 dark:bg-green-700 flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(22,101,52,0.4)]"
-        >
-          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="3" width="16" height="3" rx="1.2" fill="white" />
-            <rect x="8.5" y="6" width="3" height="11" rx="1.2" fill="white" />
-          </svg>
-        </div>
-
-        <span
-          class="text-xl font-bold text-green-700 dark:text-green-400 font-serif"
-        >
-          TechSkills
-        </span>
-      </div>
-
-      <!-- ── Dark / Light mode toggle button ───────────────────────── -->
-      <button
-        id="theme-btn"
-        class="flex items-center gap-2 px-3 py-1.5 rounded-md border border-green-200 dark:border-green-900 text-sm text-green-800 dark:text-green-300 hover:bg-green-100 dark:hover:bg-[#0d2418] transition-colors duration-200 cursor-pointer"
-        aria-label="Toggle dark and light mode"
-      >
-        <!-- Sun icon → shown in dark mode; clicking switches to light -->
-        <svg
-          id="icon-sun"
-          xmlns="http://www.w3.org/2000/svg"
-          class="hidden w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-        >
-          <circle cx="12" cy="12" r="4" />
-          <path
-            stroke-linecap="round"
-            d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-          />
-        </svg>
-        <!-- Moon icon → shown in light mode; clicking switches to dark -->
-        <svg
-          id="icon-moon"
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-          />
-        </svg>
-        <span id="theme-label">Dark mode</span>
-      </button>
-    </header>
-
-    <!-- ══════════════════════════════════════════════════════════════
-         MAIN — two-column card
-         ══════════════════════════════════════════════════════════════ -->
-    <main
-      class="flex items-center justify-center p-4 md:p-10 min-h-[calc(100vh-65px)]"
-    >
-      <div
-        class="w-full max-w-4xl rounded-3xl shadow-2xl border border-green-200 dark:border-green-900 overflow-hidden grid grid-cols-1 md:grid-cols-2 bg-white dark:bg-[#0a1f11] transition-colors duration-300"
-      >
-        <!-- ════════════════════════════════════════════════════════
-             LEFT PANEL — contact info + social links
-             ════════════════════════════════════════════════════════ -->
-        <div
-          class="relative bg-green-800 dark:bg-green-950 text-white p-8 md:p-10 flex flex-col gap-8 overflow-hidden transition-colors duration-300"
-        >
-          <!-- Decorative blurred circles -->
-          <div
-            class="absolute -top-14 -right-14 w-48 h-48 rounded-full bg-green-400 opacity-10 pointer-events-none"
-          ></div>
-          <div
-            class="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-green-400 opacity-10 pointer-events-none"
-          ></div>
-
-          <!-- ── Header ──────────────────────────────────────────── -->
-          <div class="relative z-10">
-            <span
-              class="inline-block bg-green-400/20 text-green-300 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-4"
-            >
-              Get in touch
-            </span>
-
-            <!-- Main heading -->
-            <h1
-              class="font-serif text-3xl md:text-4xl font-medium leading-tight mb-2"
-            >
-              We'd love to<br />hear from you
-            </h1>
-
-            <!-- Subheading -->
-            <p class="text-white/50 text-sm leading-relaxed">
-              Reach out anytime — we respond within 24 hours.
-            </p>
-          </div>
-
-          <!-- ── Contact info rows ───────────────────────────────── -->
-          <div class="relative z-10 flex flex-col gap-3">
-            <!-- Phone row -->
-            <div
-              class="info-item flex items-center gap-4 px-4 py-3 rounded-xl border border-white/10 bg-white/5 cursor-default hover:bg-green-400/10 hover:border-green-400/30"
-            >
-              <div
-                class="w-10 h-10 rounded-xl bg-green-400/20 flex items-center justify-center shrink-0"
-              >
-                <svg
-                  class="w-4 h-4 fill-green-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p class="text-white/40 text-xs tracking-wide mb-0.5">Phone</p>
-                <p class="text-white/90 text-sm font-medium">099 9999 999</p>
-              </div>
-            </div>
-
-            <!-- Email row -->
-            <div
-              class="info-item flex items-center gap-4 px-4 py-3 rounded-xl border border-white/10 bg-white/5 cursor-default hover:bg-green-400/10 hover:border-green-400/30"
-            >
-              <div
-                class="w-10 h-10 rounded-xl bg-green-400/20 flex items-center justify-center shrink-0"
-              >
-                <svg
-                  class="w-4 h-4 fill-green-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p class="text-white/40 text-xs tracking-wide mb-0.5">Email</p>
-                <p class="text-white/90 text-sm font-medium">
-                  techskills@mail.com
-                </p>
-              </div>
-            </div>
-
-            <!-- Location row -->
-            <div
-              class="info-item flex items-center gap-4 px-4 py-3 rounded-xl border border-white/10 bg-white/5 cursor-default hover:bg-green-400/10 hover:border-green-400/30"
-            >
-              <div
-                class="w-10 h-10 rounded-xl bg-green-400/20 flex items-center justify-center shrink-0"
-              >
-                <svg
-                  class="w-4 h-4 fill-green-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                >
-                  <path
-                    d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p class="text-white/40 text-xs tracking-wide mb-0.5">
-                  Location
-                </p>
-                <p class="text-white/90 text-sm font-medium">
-                  Phnom Penh, Cambodia
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── Social links ────────────────────────────────────── -->
-          <div class="relative z-10">
-            <p class="text-white/40 text-xs tracking-widest uppercase mb-3">
-              Find us on
-            </p>
-
-            <div class="grid grid-cols-4 gap-2">
-              <!-- Telegram button -->
-              <a
-                href="#"
-                class="social-btn btn-telegram flex flex-col items-center justify-center gap-1.5 py-3 px-1 rounded-xl border border-white/10 bg-white/5 text-white/70 hover:text-white text-xs font-medium no-underline"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
-                  />
-                </svg>
-                <span>Telegram</span>
-              </a>
-
-              <!-- TikTok button -->
-              <a
-                href="#"
-                class="social-btn btn-tiktok flex flex-col items-center justify-center gap-1.5 py-3 px-1 rounded-xl border border-white/10 bg-white/5 text-white/70 hover:text-white text-xs font-medium no-underline"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
-                  />
-                </svg>
-                <span>TikTok</span>
-              </a>
-
-              <!-- Messenger button -->
-              <a
-                href="#"
-                class="social-btn btn-messenger flex flex-col items-center justify-center gap-1.5 py-3 px-1 rounded-xl border border-white/10 bg-white/5 text-white/70 hover:text-white text-xs font-medium no-underline"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8.4l3.131 3.259L19.752 8.4l-6.561 6.563z"
-                  />
-                </svg>
-                <span>Messenger</span>
-              </a>
-
-              <!-- WhatsApp button -->
-              <a
-                href="#"
-                class="social-btn btn-whatsapp flex flex-col items-center justify-center gap-1.5 py-3 px-1 rounded-xl border border-white/10 bg-white/5 text-white/70 hover:text-white text-xs font-medium no-underline"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
-                  />
-                </svg>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- END LEFT PANEL -->
-
-        <!-- ════════════════════════════════════════════════════════
-             RIGHT PANEL — contact form
-             ════════════════════════════════════════════════════════ -->
-        <div
-          class="p-8 md:p-10 flex flex-col gap-5 bg-white dark:bg-[#0a1f11] transition-colors duration-300"
-        >
-          <!-- Panel heading -->
-          <div>
-            <h2
-              class="font-serif text-2xl md:text-3xl font-medium text-gray-800 dark:text-green-100 mb-1"
-            >
-              Send a message
-            </h2>
-
-            <p class="text-gray-500 dark:text-green-300 text-sm">
-              Fill in the form and we'll get back to you shortly.
-            </p>
-          </div>
-
-          <!-- ── CONTACT FORM ────────────────────────────────────── -->
-          <form id="contact-form" novalidate>
-            <!-- Name field -->
-            <div class="flex flex-col gap-1.5 mb-4">
-              <label
-                for="name"
-                class="text-xs font-semibold text-gray-700 dark:text-green-200 uppercase tracking-wider"
-              >
-                Your Name <span class="text-red-500">*</span>
-              </label>
-
-              <input
-                id="name"
-                autocomplete="off"
-                type="text"
-                placeholder="Your name"
-                class="w-full px-4 py-3 rounded-xl border border-green-100 dark:border-green-900 bg-green-50 dark:bg-[#0d2418] text-gray-800 dark:text-green-100 placeholder-gray-400 text-sm outline-none focus:border-green-500 focus:ring-4 focus:ring-green-200/50 dark:focus:ring-green-900/30 transition-all duration-200"
-              />
-              <!-- Error message -->
-              <p id="name-error" class="hidden text-xs text-red-500"></p>
-            </div>
-
-            <!-- Email field -->
-            <div class="flex flex-col gap-1.5 mb-4">
-              <label
-                for="email"
-                class="text-xs font-semibold text-gray-700 dark:text-green-200 uppercase tracking-wider"
-              >
-                Email Address <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                autocomplete="off"
-                type="email"
-                placeholder="you@example.com"
-                class="w-full px-4 py-3 rounded-xl border border-green-100 dark:border-green-900 bg-green-50 dark:bg-[#0d2418] text-gray-800 dark:text-green-100 placeholder-gray-400 text-sm outline-none focus:border-green-500 focus:ring-4 focus:ring-green-200/50 dark:focus:ring-green-900/30 transition-all duration-200"
-              />
-              <p id="email-error" class="hidden text-xs text-red-500"></p>
-            </div>
-
-            <!-- Subject field -->
-            <div class="flex flex-col gap-1.5 mb-4">
-              <label
-                for="subject"
-                class="text-xs font-semibold text-gray-700 dark:text-green-200 uppercase tracking-wider"
-              >
-                Subject
-              </label>
-              <input
-                id="subject"
-                type="text"
-                autocomplete="off"
-                placeholder="What's this about?"
-                class="w-full px-4 py-3 rounded-xl border border-green-100 dark:border-green-900 bg-green-50 dark:bg-[#0d2418] text-gray-800 dark:text-green-100 placeholder-gray-400 text-sm outline-none focus:border-green-500 focus:ring-4 focus:ring-green-200/50 dark:focus:ring-green-900/30 transition-all duration-200"
-              />
-            </div>
-
-            <!-- Message textarea -->
-            <div class="flex flex-col gap-1.5 mb-6">
-              <label
-                for="message"
-                class="text-xs font-semibold text-gray-700 dark:text-green-200 uppercase tracking-wider"
-              >
-                Message <span class="text-red-500">*</span>
-              </label>
-              <textarea
-                id="message"
-                rows="4"
-                autocomplete="off"
-                placeholder="Write your message here..."
-                class="w-full px-4 py-3 rounded-xl border border-green-100 dark:border-green-900 bg-green-50 dark:bg-[#0d2418] text-gray-800 dark:text-green-100 placeholder-gray-400 text-sm outline-none resize-none focus:border-green-500 focus:ring-4 focus:ring-green-200/50 dark:focus:ring-green-900/30 transition-all duration-200"
-              ></textarea>
-              <p id="message-error" class="hidden text-xs text-red-500"></p>
-            </div>
-
-            <button
-              id="send-btn"
-              type="button"
-              class="send-btn w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white text-sm font-semibold hover:shadow-lg cursor-pointer border-none transition-all duration-200"
-            >
-              <!-- Send / paper-plane icon -->
-              <svg
-                class="w-4 h-4 fill-white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-              </svg>
-              Send Message
-            </button>
-          </form>
-          <!-- END CONTACT FORM -->
-
-          <div
-            id="success-msg"
-            class="hidden fade-in text-center border border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-900/30 rounded-2xl px-6 py-10"
-          >
-            <!-- Big checkmark emoji -->
-            <p class="text-4xl mb-3">✅</p>
-
-            <h3
-              class="font-serif text-xl font-semibold text-gray-800 dark:text-green-100 mb-2"
-            >
-              Message sent!
-            </h3>
-
-            <p class="text-sm text-gray-500 dark:text-green-300 mb-5">
-              Thanks for reaching out. We'll reply within 24 hours.
-            </p>
-
-            <!-- "Send another" resets the form -->
-            <button
-              onclick="resetForm()"
-              class="text-sm text-green-600 dark:text-green-400 underline hover:no-underline cursor-pointer bg-transparent border-none"
-            >
-              Send another message
-            </button>
-          </div>
-        </div>
-        <!-- END RIGHT PANEL -->
-      </div>
-      <!-- END CARD -->
-    </main>
-
-    <script src="./main.js"></script>
-  </body>
-</html>
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
+      }
+    }
+  }
+  .hover\:no-underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: none;
+      }
+    }
+  }
+  .hover\:shadow-lg {
+    &:hover {
+      @media (hover: hover) {
+        --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+      }
+    }
+  }
+  .focus\:border-green-500 {
+    &:focus {
+      border-color: var(--color-green-500);
+    }
+  }
+  .focus\:ring-4 {
+    &:focus {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus\:ring-green-200\/50 {
+    &:focus {
+      --tw-ring-color: color-mix(in srgb, oklch(92.5% 0.084 155.995) 50%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        --tw-ring-color: color-mix(in oklab, var(--color-green-200) 50%, transparent);
+      }
+    }
+  }
+  .md\:grid-cols-2 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .md\:p-10 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 10);
+    }
+  }
+  .md\:text-3xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+  }
+  .md\:text-4xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-4xl);
+      line-height: var(--tw-leading, var(--text-4xl--line-height));
+    }
+  }
+  .dark\:border-green-700 {
+    &:where(.dark, .dark *) {
+      border-color: var(--color-green-700);
+    }
+  }
+  .dark\:border-green-900 {
+    &:where(.dark, .dark *) {
+      border-color: var(--color-green-900);
+    }
+  }
+  .dark\:bg-\[\#0a1f11\] {
+    &:where(.dark, .dark *) {
+      background-color: #0a1f11;
+    }
+  }
+  .dark\:bg-\[\#0d2418\] {
+    &:where(.dark, .dark *) {
+      background-color: #0d2418;
+    }
+  }
+  .dark\:bg-\[\#071a0d\] {
+    &:where(.dark, .dark *) {
+      background-color: #071a0d;
+    }
+  }
+  .dark\:bg-green-600 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-green-600);
+    }
+  }
+  .dark\:bg-green-700 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-green-700);
+    }
+  }
+  .dark\:bg-green-900\/30 {
+    &:where(.dark, .dark *) {
+      background-color: color-mix(in srgb, oklch(39.3% 0.095 152.535) 30%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-green-900) 30%, transparent);
+      }
+    }
+  }
+  .dark\:bg-green-950 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-green-950);
+    }
+  }
+  .dark\:text-green-100 {
+    &:where(.dark, .dark *) {
+      color: var(--color-green-100);
+    }
+  }
+  .dark\:text-green-200 {
+    &:where(.dark, .dark *) {
+      color: var(--color-green-200);
+    }
+  }
+  .dark\:text-green-300 {
+    &:where(.dark, .dark *) {
+      color: var(--color-green-300);
+    }
+  }
+  .dark\:text-green-400 {
+    &:where(.dark, .dark *) {
+      color: var(--color-green-400);
+    }
+  }
+  .dark\:hover\:bg-\[\#0d2418\] {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: #0d2418;
+        }
+      }
+    }
+  }
+  .dark\:hover\:bg-green-700 {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--color-green-700);
+        }
+      }
+    }
+  }
+  .dark\:focus\:ring-green-900\/30 {
+    &:where(.dark, .dark *) {
+      &:focus {
+        --tw-ring-color: color-mix(in srgb, oklch(39.3% 0.095 152.535) 30%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          --tw-ring-color: color-mix(in oklab, var(--color-green-900) 30%, transparent);
+        }
+      }
+    }
+  }
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-border-style: solid;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-tracking: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-duration: initial;
+    }
+  }
+}
