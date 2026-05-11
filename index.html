@@ -4,392 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colorful Home Components</title>
+<link rel="stylesheet" href="./src/output.css">
     
     <!-- TAILWIND CONFIGURATION -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'selector',
-        }
-    </script>
-
-    <style>
-        /* ===== RESET ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-
-        /* ===== THEME ===== */
-        body {
-            background: #f5f7f9;
-            color: #111;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* These custom CSS rules handle the non-tailwind components */
-        html.dark body {
-            background: #020617;
-            color: #e5e7eb;
-        }
-
-        /* ===== CONTAINER ===== */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: #fff;
-            border-bottom: 1px solid #eee;
-            transition: 0.3s;
-        }
-
-        html.dark .navbar {
-            background: #111827;
-            border-color: #1f2937;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        /* LOGO */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-box {
-            background: #16a34a;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        .logo-text {
-            font-weight: bold;
-        }
-
-        /* NAV LINKS */
-        .nav-links {
-            display: flex;
-        }
-
-        .nav-links a {
-            margin: 0 12px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .nav-links a:hover {
-            color: #16a34a;
-        }
-
-        /* ACTIONS */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        /* BUTTONS */
-        .btn {
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            border: none;
-            font-size: 14px;
-        }
-
-        .btn-outline {
-            border: 1px solid #ccc;
-            background: transparent;
-            color: inherit;
-        }
-
-        .btn-primary {
-            background: #16a34a;
-            color: white;
-        }
-
-        /* ===== TOGGLE SWITCH ===== */
-        .toggle-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #374151;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        html.dark .toggle-wrap {
-            color: #e5e7eb;
-        }
-
-        .toggle-label {
-            min-width: 34px;
-            font-size: 13px;
-        }
-
-        .toggle-track {
-            position: relative;
-            width: 52px;
-            height: 28px;
-            border-radius: 999px;
-            background: #d1d5db;
-            transition: background 0.3s;
-            flex-shrink: 0;
-        }
-
-        html.dark .toggle-track {
-            background: #16a34a;
-        }
-
-        .toggle-track::after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        html.dark .toggle-track::after {
-            transform: translateX(24px);
-            background: #fff;
-        }
-
-        /* MOBILE MENU */
-        .menu-toggle {
-            display: none;
-            font-size: 22px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: inherit;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: #0b1220;
-            color: #cbd5e1;
-            padding: 60px 0 20px;
-        }
-
-        html.dark .footer {
-            background: #020617;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 40px;
-        }
-
-        .footer-brand p {
-            margin: 15px 0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .socials {
-            display: flex;
-            gap: 10px;
-        }
-
-        .socials a {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #1f2937;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #cbd5e1;
-        }
-
-        .socials a:hover {
-            background: #16a34a;
-            color: white;
-        }
-
-        .footer h4 {
-            color: white;
-            margin-bottom: 12px;
-        }
-
-        .footer ul {
-            list-style: none;
-        }
-
-        .footer ul li {
-            margin: 8px 0;
-        }
-
-        .footer ul li a {
-            text-decoration: none;
-            color: #cbd5e1;
-            font-size: 14px;
-        }
-
-        .footer ul li a:hover {
-            color: #16a34a;
-        }
-
-        .newsletter {
-            display: flex;
-            margin-top: 10px;
-        }
-
-        .newsletter input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px 0 0 8px;
-            outline: none;
-        }
-
-        .newsletter button {
-            background: #16a34a;
-            border: none;
-            padding: 10px 14px;
-            color: white;
-            border-radius: 0 8px 8px 0;
-            cursor: pointer;
-        }
-
-        .footer-bottom {
-            margin-top: 40px;
-            padding-top: 15px;
-            border-top: 1px solid #1f2937;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-        }
-
-        .footer-links a {
-            margin-left: 15px;
-            text-decoration: none;
-            color: #cbd5e1;
-        }
-
-        .footer-links a:hover {
-            color: #16a34a;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                display: none;
-                text-align: center;
-                padding: 20px 0;
-                z-index: 100;
-            }
-
-            html.dark .nav-links {
-                background: #111827;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links a {
-                margin: 10px 0;
-            }
-
-            .toggle-label {
-                display: none;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .footer-links {
-                display: flex;
-                gap: 10px;
-            }
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .floating { animation: float 6s ease-in-out infinite; }
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-    </style>
+   <script>
+tailwind.config = {
+  darkMode: 'class'
+}
+</script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="transition-colors duration-300">
+    <!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-<header class="navbar">
-    <div class="container nav-container">
-        <div class="logo">
-            <span class="logo-box">T</span>
-            <span class="logo-text">TechSkills</span>
+    <!-- LOGO -->
+    <a href="#" class="text-2xl font-bold text-[#00FA9A]">
+      TechSkills
+    </a>
+
+    <!-- DESKTOP MENU -->
+    <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
+      <li><a class="hover:text-[#00FA9A]" href="#">Home</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">Courses</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">Details</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">About</a></li>
+      <li><a class="hover:text-[#00FA9A]" href="#">Contact</a></li>
+    </ul>
+
+    <!-- RIGHT SIDE -->
+    <div class="flex items-center gap-3">
+
+      <!-- DARK MODE TOGGLE -->
+      <button id="theme-toggle"
+        class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition">
+        <div id="toggle-circle"
+          class="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300">
         </div>
+      </button>
 
-        <nav class="nav-links" id="navLinks">
-            <a href="#">Home</a>
-            <a href="#">Courses</a>
-            <a href="#">Detail</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
+      <!-- LOGIN -->
+      <a href="#" class="hidden sm:block text-gray-700 dark:text-gray-200 hover:text-[#00FA9A] text-sm">
+        Login
+      </a>
 
-        <div class="nav-actions">
-            <!-- TOGGLE SWITCH -->
-            <div class="toggle-wrap" id="themeToggle">
-                <span class="toggle-label" id="toggleLabel">Light</span>
-                <div class="toggle-track"></div>
-            </div>
+      <!-- SIGN UP -->
+      <a href="#" class="hidden sm:block bg-[#00FA9A] hover:bg-[#00d487] text-black px-4 py-2 rounded-lg text-sm font-medium">
+        Sign Up
+      </a>
 
-            <button class="btn btn-outline">Sign In</button>
-            <button class="btn btn-primary">Get Started</button>
-            <button class="menu-toggle" id="menuToggle">☰</button>
-        </div>
+      <!-- MOBILE BUTTON -->
+      <button id="menu-btn" class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
+        <svg class="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
     </div>
-</header>
+  </div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu"
+    class="lg:hidden fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg transform -translate-y-full transition-transform duration-300">
+
+    <div class="px-6 py-6 flex flex-col gap-5 text-gray-700 dark:text-gray-200 font-medium">
+
+      <a href="#" class="hover:text-[#00FA9A]">Home</a>
+      <a href="#" class="hover:text-[#00FA9A]">Courses</a>
+      <a href="#" class="hover:text-[#00FA9A]">Details</a>
+      <a href="#" class="hover:text-[#00FA9A]">About</a>
+      <a href="#" class="hover:text-[#00FA9A]">Contact</a>
+
+      <div class="border-t pt-4 flex flex-col gap-3">
+        <a href="#">Login</a>
+        <a href="#" class="text-[#00FA9A] font-semibold">Sign Up</a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- SPACER -->
+<div class="h-20"></div>
+
+<!-- SCRIPT -->
+<script>
+const menuBtn = document.getElementById("menu-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+const overlay = document.getElementById("overlay");
+
+function openMenu() {
+  mobileMenu.classList.remove("-translate-y-full");
+  overlay.classList.remove("hidden");
+}
+
+function closeMenu() {
+  mobileMenu.classList.add("-translate-y-full");
+  overlay.classList.add("hidden");
+}
+
+menuBtn.addEventListener("click", openMenu);
+overlay.addEventListener("click", closeMenu);
+
+// DARK MODE
+const toggle = document.getElementById("theme-toggle");
+const circle = document.getElementById("toggle-circle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark");
+  circle.classList.add("translate-x-6");
+}
+
+
+toggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+
+  if (document.documentElement.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    circle.classList.add("translate-x-6");
+  } else {
+    localStorage.setItem("theme", "light");
+    circle.classList.remove("translate-x-6");
+  }
+});
+</script>
 
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-tr from-lime-400 via-emerald-500 to-teal-700 dark:from-slate-900 dark:via-slate-800 dark:to-teal-900 transition-all duration-500">
@@ -546,77 +291,185 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer">
-    <div class="container footer-grid">
-        <div class="footer-brand">
-            <div class="logo">
-                <span class="logo-box">T</span>
-                <span class="logo-text">TechSkills</span>
-            </div>
-            <p>Empowering learners worldwide with high-quality education since 2026.</p>
-            <div class="socials">
-                <a href="#"><i class="fab fa-x-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
+<!-- FOOTER -->
+  <footer class="mt-20">
 
-        <div>
-            <h4>Platform</h4>
-            <ul>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">Certificates</a></li>
-                <li><a href="#">Pricing</a></li>
+    <!-- TOP FOOTER -->
+    <div class="bg-gray-900 text-gray-300 py-14">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          <!-- ABOUT -->
+          <div>
+            <h1 class="text-3xl font-bold text-white mb-5">
+              TechSkills
+            </h1>
+
+            <p class="leading-7 text-gray-400">
+              TechSkills is a modern E-Learning platform focused on
+              Information Technology and Computer Science education.
+              Our platform helps students and developers learn
+              programming, cloud technologies, cybersecurity,
+              artificial intelligence, and software engineering
+              through practical online courses and real-world projects.
+            </p>
+          </div>
+
+          <!-- COMPANY -->
+          <div>
+            <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
+              Company
+            </h2>
+
+            <ul class="space-y-3">
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  About Us
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Our Courses
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Career Paths
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Privacy Policy
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Contact Us
+                </a>
+              </li>
+
             </ul>
-        </div>
+          </div>
 
-        <div>
-            <h4>Company</h4>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Careers</a></li>
+          <!-- COURSES -->
+          <div>
+            <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
+              Courses
+            </h2>
+
+            <ul class="space-y-3">
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Artificial Intelligence (AI) & Machine Learning (ML)
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Data Science & Big Data Analytics
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Cloud Computing (AWS / Azure / GCP)
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Full-Stack Development
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Mobile App Development
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Cybersecurity & Ethical Hacking
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Blockchain Development
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  DevOps Engineering
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Java Programming
+                </a>
+              </li>
+                <li>
+                <a href="#" class="hover:text-indigo-400 transition">
+                  Linux System Administration
+                </a>
+              </li>
+
             </ul>
-        </div>
+          </div>
 
-        <div>
-            <h4>Newsletter</h4>
-            <p>Get weekly updates on new courses.</p>
-            <div class="newsletter">
-                <input type="email" placeholder="your@email.com">
-                <button>→</button>
-            </div>
-        </div>
+        <!-- SOCIAL / CONNECT -->
+          <div>
+  <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
+    Connect With Us
+  </h2>
+
+  <p class="text-gray-400 leading-7 mb-4">
+    Stay connected with TechSkills to get the latest updates on IT & Computer Science courses,
+    tutorials, and learning resources.
+  </p>
+
+  <p class="text-gray-400 leading-7 mb-5">
+    You can also find our learning platform easily on Google by searching
+    <span class="text-white font-semibold">“TechSkills E-Learning”</span>.
+  </p>
+
+  <p class="text-gray-500 text-sm">
+    We are always updating new courses to help you build real-world tech skills.
+  </p>
+     </div>
     </div>
 
-    <div class="footer-bottom container">
-        <p>© 2026 TechSkills. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+    <!-- BOTTOM FOOTER -->
+    <div class="bg-indigo-700 text-white py-5">
+
+      <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+
+          <p>
+            © 2026 TechSkills. All Rights Reserved.
+          </p>
+
+          <p>
+            Learn IT Skills. Build Your Future. 
+          </p>
+
         </div>
+
+      </div>
+
     </div>
-</footer>
 
-<!-- JS -->
-<script>
-    const themeToggle = document.getElementById("themeToggle");
-    const toggleLabel = document.getElementById("toggleLabel");
-    const html = document.documentElement;
-
-    themeToggle.onclick = () => {
-        // Toggle the .dark class on the <html> element
-        html.classList.toggle("dark");
-        const isDark = html.classList.contains("dark");
-        toggleLabel.textContent = isDark ? "Dark" : "Light";
-    };
-
-    const menuBtn = document.getElementById("menuToggle");
-    const nav = document.getElementById("navLinks");
-
-    menuBtn.onclick = () => {
-        nav.classList.toggle("active");
-    };
-</script>
+  </footer>
 </body>
 </html>
