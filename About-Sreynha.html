@@ -3,682 +3,405 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-  <style>
+  <title>About | TechSkills</title>
 
-    body {
-      background: #f6f6f6;
-      color: #333;
-    }
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: #fff;
-      border-bottom: 1px solid #eee;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #555;
-      font-size: 14px;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: #00fa9a;;
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #0f2d4d;
-      color: #7dd3a7;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      font-style: italic;
-    }
-
-    .hero p {
-      max-width: 600px;
-      margin: auto;
-      font-size: 14px;
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-
-    /* Stats */
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 40px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      width: 220px;
-      text-align: center;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .card h2 {
-      color: #2e7d32;
-      font-size: 28px;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: #777;
-      margin-top: 8px;
-    }
-    .section-tag {
-    text-align: center;
-    color: #2e7d32;
-    font-size: 12px;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    }
-
-    .section-title {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    margin-bottom: 40px;
-    }
-
-    * ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
-
-/* ===== THEME ===== */
-body {
-  background: #f5f7f9;
-  color: #111;
-  transition: 0.3s;
-}
-
-body.dark {
-  background: #020617;
-  color: #e5e7eb;
-}
-
-/* ===== CONTAINER ===== */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-  background: #fff;
-  border-bottom: 1px solid #eee;
-}
-
-body.dark .navbar {
-  background: #111827;
-  border-color: #1f2937;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-}
-
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-box {
-  background: #16a34a;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.logo-text {
-  font-weight: bold;
-}
-
-/* NAV LINKS */
-.nav-links {
-  display: flex;
-}
-
-.nav-links a {
-  margin: 0 12px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.nav-links a:hover {
-  color: #16a34a;
-}
-
-/* ACTIONS */
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* BUTTONS */
-.btn {
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: none;
-  font-size: 14px;
-}
-
-.btn-outline {
-  border: 1px solid #ccc;
-  background: transparent;
-  color: inherit;
-}
-
-.btn-primary {
-  background: #16a34a;
-  color: white;
-}
-
-/* ===== TOGGLE SWITCH ===== */
-.toggle-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #374151;
-  cursor: pointer;
-  user-select: none;
-}
-
-body.dark .toggle-wrap {
-  color: #e5e7eb;
-}
-
-.toggle-label {
-  min-width: 34px;
-  font-size: 13px;
-}
-
-/* The track */
-.toggle-track {
-  position: relative;
-  width: 52px;
-  height: 28px;
-  border-radius: 999px;
-  background: #d1d5db;
-  transition: background 0.3s;
-  flex-shrink: 0;
-}
-
-body.dark .toggle-track {
-  background: #1f2937;
-}
-
-/* The knob */
-.toggle-track::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-  transition: transform 0.3s, background 0.3s;
-}
-
-body.dark .toggle-track::after {
-  transform: translateX(24px);
-  background: #4b5563;
-}
-
-/* MOBILE MENU */
-.menu-toggle {
-  display: none;
-  font-size: 22px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: inherit;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: #0b1220;
-  color: #cbd5e1;
-  padding: 60px 0 20px;
-}
-
-body.dark .footer {
-  background: #020617;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 40px;
-}
-
-.footer-brand p {
-  margin: 15px 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.socials {
-  display: flex;
-  gap: 10px;
-}
-
-.socials a {
-  width: 35px;
-  height: 35px;
-  border: 1px solid #1f2937;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #cbd5e1;
-}
-
-.socials a:hover {
-  background: #16a34a;
-  color: white;
-}
-
-.footer h4 {
-  color: white;
-  margin-bottom: 12px;
-}
-
-.footer ul {
-  list-style: none;
-}
-
-.footer ul li {
-  margin: 8px 0;
-}
-
-.footer ul li a {
-  text-decoration: none;
-  color: #cbd5e1;
-  font-size: 14px;
-}
-
-.footer ul li a:hover {
-  color: #16a34a;
-}
-
-.newsletter {
-  display: flex;
-  margin-top: 10px;
-}
-
-.newsletter input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px 0 0 8px;
-  outline: none;
-}
-
-.newsletter button {
-  background: #16a34a;
-  border: none;
-  padding: 10px 14px;
-  color: white;
-  border-radius: 0 8px 8px 0;
-  cursor: pointer;
-}
-
-.footer-bottom {
-  margin-top: 40px;
-  padding-top: 15px;
-  border-top: 1px solid #1f2937;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
-
-.footer-links a {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #cbd5e1;
-}.footer-links a:hover {
-  color: #16a34a;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: white;
-    flex-direction: column;
-    display: none;
-    text-align: center;
-    padding: 20px 0;
-    z-index: 100;
-  }
-
-  body.dark .nav-links {
-    background: #111827;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links a {
-    margin: 10px 0;
-  }
-
-  .toggle-label {
-    display: none;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 10px;
-  }
-}
-</style>
-</head>
-<body>
-  <!-- ===== NAVBAR ===== -->
-<header class="navbar">
-  <div class="container nav-container">
-
-    <div class="logo">
-      <span class="logo-box">T</span>
-      <span class="logo-text">TechSkills</span>
-    </div>
-
-    <nav class="nav-links" id="navLinks">
-      <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
-                <li><a class="hover:text-emerald-500 transition" href="./home-sokleap.html">Home</a></li>
-                <li><a class="hover:text-emerald-500 transition" href="./courses-raksmey.html">Courses</a></li>
-                <li><a class="hover:text-emerald-500 transition" href="./details-khema.html">Details</a></li>
-                <li><a class="hover:text-emerald-500 transition" href="./about-sreynha.html">About</a></li>
-                <li><a class="hover:text-emerald-500 transition" href="./contact-longhuy.html">Contact</a></li>
-            </ul>
-    </nav>
-
-    <div class="nav-actions">
-
-      <!-- TOGGLE SWITCH -->
-      <div class="toggle-wrap" id="themeToggle">
-        <span class="toggle-label" id="toggleLabel">Light</span>
-        <div class="toggle-track"></div>
-      </div>
-
-      <button class="btn btn-outline">Sign In</button>
-      <button class="btn btn-primary">Get Started</button>
-      <button class="menu-toggle" id="menuToggle">☰</button>
-    </div>
-
-  </div>
-</header>
-
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="tag">Our Class</div>
-    <h1>Education for <span>Everyone</span>,<br>Everywhere</h1>
-  </section>
-
-  <!-- Stats -->
-  <section class="stats">
-    <div class="card">
-      <h2>500+</h2>
-      <p>Courses Available</p>
-    </div>
-
-    <div class="card">
-      <h2>48k+</h2>
-      <p>Active Students</p>
-    </div>
-
-    <div class="card">
-      <h2>120+</h2>
-      <p>Expert Instructors</p>
-    </div>
-
-    <div class="card">
-      <h2>4.8★</h2>
-      <p>Average Rating</p>
-    </div>
-  </section>
-    
-  <!-- TEAM SECTION -->
-<section class="team-section">
-  <p class="section-tag">THE VIDEO IN TechSkill</p>
-  <h2 class="section-title">Learning now </h2>
-
-  <!-- Tailwind CSS CDN -->
+  <!-- TAILWIND CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00FA9A'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *{
+      font-family: 'Inter', sans-serif;
+    }
+
+    body{
+      background: #f8fafc;
+    }
+
+    .hero-bg{
+      background: linear-gradient(135deg, #00FA9A, #059669);
+    }
+
+    .video-card:hover{
+      transform: translateY(-8px);
+    }
+  </style>
 </head>
 
-<body class="bg-[#dfe8eb] min-h-screen p-10">
+<body class="bg-white dark:bg-slate-900 transition-colors duration-300">
 
-  <!-- Cards Container -->
-  <div class="flex flex-wrap gap-10 justify-center">
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-700">
 
-    <!-- Card 1 -->
-    <div class="w-[285px] bg-white shadow-md relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-      <!-- Badge -->
-      <div class="absolute top-0 left-0 bg-orange-500 text-white text-sm font-bold px-6 py-2 z-10">
-        NEW
-      </div>
+      <!-- LOGO -->
+      <a href="#" class="text-2xl font-bold text-emerald-500">
+        TechSkills
+      </a>
 
-      <!-- Title -->
-      <div class="pt-14 pb-6 px-6 text-center min-h-[120px]">
-        <h2 class="text-[20px] leading-[1.4] font-medium text-[#0d2340]">
-          Wolfram Demonstrations Project
-        </h2>
-      </div>
+      <!-- DESKTOP MENU -->
+      <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
 
-      <!-- Image -->
-      <img
-        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200"
-        alt=""
-        class="w-full h-[205px] object-cover"
-      />
+        <li>
+          <a class="hover:text-emerald-500 transition" href="./home-sokleap.html">
+            Home
+          </a>
+        </li>
 
-      <!-- Footer -->
-      <div class="bg-[#132b52] text-white py-4 flex items-center justify-center gap-4 text-sm">
-        <span>2 min</span>
-        <span>|</span>
-        <span>Video Lesson</span>
-      </div>
-    </div>
+        <li>
+          <a class="hover:text-emerald-500 transition" href="./courses-raksmey.html">
+            Courses
+          </a>
+        </li>
 
-    <!-- Card 2 -->
-    <div class="w-[285px] bg-white shadow-md relative overflow-hidden">
+        <li>
+          <a class="hover:text-emerald-500 transition" href="./details-khema.html">
+            Details
+          </a>
+        </li>
 
-      <!-- Badge -->
-      <div class="absolute top-0 left-0 bg-[#59bea9] text-white text-sm font-bold px-6 py-2 z-10">
-        FEATURED
-      </div>
+        <li>
+          <a class="hover:text-emerald-500 transition" href="./about-sreynha.html">
+            About
+          </a>
+        </li>
 
-      <!-- Icons -->
-      <div class="absolute top-4 right-4 flex gap-2 z-10">
-        <div class="w-9 h-9 rounded-lg border-2 border-[#59bea9] flex items-center justify-center text-[#59bea9] bg-white">
-          ✓
-        </div>
-      </div>
+        <li>
+          <a class="hover:text-emerald-500 transition" href="./contact-longhuy.html">
+            Contact
+          </a>
+        </li>
 
-      <!-- Title -->
-      <div class="pt-14 pb-6 px-6 text-center min-h-[120px]">
-        <h2 class="text-[20px] leading-[1.4] font-medium text-[#0d2340]">
-          Computational Xplorations
-        </h2>
-      </div>
+      </ul>
 
-      <!-- Image -->
-      <img
-        src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200"
-        alt=""
-        class="w-full h-[205px] object-cover"
-      />
+      <!-- RIGHT -->
+      <div class="flex items-center gap-4">
 
-      <!-- Footer -->
-      <div class="bg-[#132b52] text-white py-4 flex items-center justify-center gap-4 text-sm">
-        <span>1.50 h</span>
-        <span>|</span>
-        <span>Instructor Led</span>
+        <!-- DARK MODE -->
+        <button id="theme-toggle"
+          class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition">
+
+          <div id="toggle-circle"
+            class="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300">
+          </div>
+
+        </button>
+
+       
+
+        <!-- MOBILE BUTTON -->
+        <button id="menu-btn" class="lg:hidden p-2 text-gray-700 dark:text-white">
+          ☰
+        </button>
+
       </div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="w-[285px] bg-white shadow-md relative overflow-hidden">
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu"
+      class="lg:hidden fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow-xl transform -translate-y-full transition-transform duration-300 z-40">
 
-      <!-- Badge -->
-      <div class="absolute top-0 left-0 bg-[#59bea9] text-white text-sm font-bold px-6 py-2 z-10">
-        FEATURED
-      </div>
+      <div class="px-6 py-8 flex flex-col gap-5 text-gray-700 dark:text-gray-200 font-medium">
 
-      <!-- Icons -->
-      <div class="absolute top-4 right-4 flex gap-2 z-10">
-        <div class="w-9 h-9 rounded-lg border-2 border-[#59bea9] flex items-center justify-center text-[#59bea9] bg-white">
-          ✓
-        </div>
-        <div class="w-9 h-9 rounded-lg border-2 border-[#59bea9] flex items-center justify-center text-[#59bea9] bg-white">
-          ★
-        </div>
-      </div>
+        <a href="./home-sokleap.html" class="hover:text-emerald-500">
+          Home
+        </a>
 
-      <!-- Title -->
-      <div class="pt-14 pb-6 px-6 text-center min-h-[120px]">
-        <h2 class="text-[20px] leading-[1.4] font-medium text-[#0d2340]">
-          Daily Study Group: Creative Computation
-        </h2>
-      </div>
+        <a href="./courses-raksmey.html" class="hover:text-emerald-500">
+          Courses
+        </a>
 
-      <!-- Image -->
-      <img
-        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200"
-        alt=""
-        class="w-full h-[205px] object-cover"
-      />
+        <a href="./details-khema.html" class="hover:text-emerald-500">
+          Details
+        </a>
 
-      <!-- Footer -->
-      <div class="bg-[#132b52] text-white py-4 flex items-center justify-center gap-4 text-sm">
-        <span>7.50 h</span>
-        <span>|</span>
-        <span>Study Group</span>
+        <a href="./about-sreynha.html" class="hover:text-emerald-500">
+          About
+        </a>
+
+        <a href="./contact-longhuy.html" class="hover:text-emerald-500">
+          Contact
+        </a>
+
       </div>
     </div>
+  </nav>
 
-    <!-- Card 4 -->
-    <div class="w-[285px] bg-white shadow-md relative overflow-hidden">
+  <!-- HERO -->
+  <section class="hero-bg pt-36 pb-24 text-white text-center">
 
-      <!-- Badge -->
-      <div class="absolute top-0 left-0 bg-[#59bea9] text-white text-sm font-bold px-6 py-2 z-10">
-        FEATURED
-      </div>
+    <div class="max-w-4xl mx-auto px-6">
 
-      <!-- Icons -->
-      <div class="absolute top-4 right-4 flex gap-2 z-10">
-        <div class="w-9 h-9 rounded-lg border-2 border-[#59bea9] flex items-center justify-center text-[#59bea9] bg-white">
-          ✓
-        </div>
-        <div class="w-9 h-9 rounded-lg border-2 border-[#59bea9] flex items-center justify-center text-[#59bea9] bg-white">
-          ★
-        </div>
-      </div>
+      <span class="bg-black/20 px-5 py-2 rounded-full text-sm font-semibold">
+        Our Class
+      </span>
 
-      <!-- Title -->
-      <div class="pt-14 pb-6 px-6 text-center min-h-[120px]">
-        <h2 class="text-[20px] leading-[1.4] font-medium text-[#0d2340]">
-          Daily Study Groups
-        </h2>
-      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold mt-8 leading-tight">
+        Education for Everyone,
+        <br>
+        Everywhere
+      </h1>
 
-      <!-- Image -->
-      <img
-        src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1200"
-        alt=""
-        class="w-full h-[205px] object-cover"
-      />
+      <p class="mt-6 text-lg text-emerald-50 max-w-2xl mx-auto">
+        TechSkills helps students worldwide learn modern technologies
+        through practical online courses, real projects, and expert instructors.
+      </p>
 
-      <!-- Footer -->
-      <div class="bg-[#132b52] text-white py-4 flex items-center justify-center text-sm">
-        <span>Study Group</span>
-      </div>
     </div>
-    <!-- ===== JS ===== -->
-<script>
-  const themeToggle = document.getElementById("themeToggle");
-  const toggleLabel = document.getElementById("toggleLabel");
 
-  themeToggle.onclick = () => {
-    document.body.classList.toggle("dark");
-    const isDark = document.body.classList.contains("dark");
-    toggleLabel.textContent = isDark ? "Dark" : "Light";
-  };
+  </section>
 
-  const menuBtn = document.getElementById("menuToggle");
-  const nav = document.getElementById("navLinks");
+  <!-- STATS -->
+  <section class="py-20 bg-gray-100 dark:bg-slate-800 transition-colors">
 
-  menuBtn.onclick = () => {
-    nav.classList.toggle("active");
-  };
-</script>
-  </div>
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg text-center">
+        <h2 class="text-4xl font-bold text-emerald-500 mb-2">
+          500+
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-300">
+          Courses Available
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg text-center">
+        <h2 class="text-4xl font-bold text-emerald-500 mb-2">
+          48K+
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-300">
+          Active Students
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg text-center">
+        <h2 class="text-4xl font-bold text-emerald-500 mb-2">
+          120+
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-300">
+          Expert Instructors
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg text-center">
+        <h2 class="text-4xl font-bold text-emerald-500 mb-2">
+          4.8★
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-300">
+          Average Rating
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="py-24 bg-white dark:bg-slate-900 transition-colors">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-16">
+
+        <p class="text-emerald-500 font-bold uppercase tracking-widest text-sm">
+          The Video In TechSkill
+        </p>
+
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mt-4">
+          Learning Now
+        </h2>
+
+      </div>
+
+      <!-- CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- CARD 1 -->
+        <div class="video-card bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl transition duration-300">
+
+          <div class="bg-orange-500 text-white text-sm font-bold px-5 py-2 inline-block">
+            NEW
+          </div>
+
+          <div class="p-6">
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-5">
+              Wolfram Demonstrations Project
+            </h3>
+
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200"
+            class="w-full h-56 object-cover"
+          >
+
+          <div class="bg-slate-900 text-white py-4 text-center">
+            2 min | Video Lesson
+          </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="video-card bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl transition duration-300">
+
+          <div class="bg-emerald-500 text-white text-sm font-bold px-5 py-2 inline-block">
+            FEATURED
+          </div>
+
+          <div class="p-6">
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-5">
+              Computational Xplorations
+            </h3>
+
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200"
+            class="w-full h-56 object-cover"
+          >
+
+          <div class="bg-slate-900 text-white py-4 text-center">
+            1.5 h | Instructor Led
+          </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="video-card bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl transition duration-300">
+
+          <div class="bg-emerald-500 text-white text-sm font-bold px-5 py-2 inline-block">
+            FEATURED
+          </div>
+
+          <div class="p-6">
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-5">
+              Daily Study Group: Creative Computation
+            </h3>
+
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200"
+            class="w-full h-56 object-cover"
+          >
+
+          <div class="bg-slate-900 text-white py-4 text-center">
+            7.5 h | Study Group
+          </div>
+
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="video-card bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl transition duration-300">
+
+          <div class="bg-emerald-500 text-white text-sm font-bold px-5 py-2 inline-block">
+            FEATURED
+          </div>
+
+          <div class="p-6">
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-5">
+              Daily Study Groups
+            </h3>
+
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1200"
+            class="w-full h-56 object-cover"
+          >
+
+          <div class="bg-slate-900 text-white py-4 text-center">
+            Study Group
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  
+  <!-- SCRIPT -->
+  <script>
+
+    // MOBILE MENU
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    let isMenuOpen = false;
+
+    menuBtn.addEventListener("click", () => {
+
+      isMenuOpen = !isMenuOpen;
+
+      if (isMenuOpen) {
+        mobileMenu.classList.remove("-translate-y-full");
+      } else {
+        mobileMenu.classList.add("-translate-y-full");
+      }
+
+    });
+
+    // DARK MODE
+    const toggle = document.getElementById("theme-toggle");
+    const circle = document.getElementById("toggle-circle");
+
+    if (
+      localStorage.getItem("theme") === "dark" ||
+      (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+
+      document.documentElement.classList.add("dark");
+      circle.classList.add("translate-x-6");
+
+    }
+
+    toggle.addEventListener("click", () => {
+
+      document.documentElement.classList.toggle("dark");
+
+      if (document.documentElement.classList.contains("dark")) {
+
+        localStorage.setItem("theme", "dark");
+        circle.classList.add("translate-x-6");
+
+      } else {
+
+        localStorage.setItem("theme", "light");
+        circle.classList.remove("translate-x-6");
+
+      }
+
+    });
+
+  </script>
+
 </body>
 </html>
