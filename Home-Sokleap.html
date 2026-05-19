@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechSkills | Modern E-Learning</title>
-
-    <!-- TAILWIND CSS -->
+    
+    <!-- TAILWIND & FONTS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,21 +20,18 @@
             }
         }
     </script>
-
-    <!-- FONT AWESOME -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
+    
     <style>
+        /* Floating Animation for Hero Image */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
-
         .gradient-text {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -45,537 +41,338 @@
 
 <body class="bg-white dark:bg-slate-900 transition-colors duration-300 font-sans">
 
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-700">
+    <nav class="fixed top-0 w-full z-50 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-bold text-[#00FA9A]">TechSkills</a>
 
-            <!-- LOGO -->
-            <a href="#" class="text-2xl font-bold text-emerald-500 dark:text-primary">
-                TechSkills
-            </a>
+    <!-- Desktop links -->
+    <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
+                <li><a class="hover:text-emerald-500 transition" href="./home-sokleap.html">Home</a></li>
+                <li><a class="hover:text-emerald-500 transition" href="./courses-raksmey.html">Courses</a></li>
+                <li><a class="hover:text-emerald-500 transition" href="./details-khema.html">Details</a></li>
+                <li><a class="hover:text-emerald-500 transition" href="./about-sreynha.html">About</a></li>
+                <li><a class="hover:text-emerald-500 transition" href="./contact-longhuy.html">Contact</a></li>
+    </ul>
 
-            <!-- DESKTOP MENU -->
-            <ul class="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
 
-                <li>
-                    <a class="hover:text-emerald-500 transition" href="./home-sokleap.html">
-                        Home
-                    </a>
-                </li>
+      <!-- Dark mode toggle -->
+      <button id="theme-toggle"
+        class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition-colors duration-300"
+        aria-label="Toggle dark mode">
+        <div id="toggle-circle"
+          class="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300"></div>
+      </button>
 
-                <li>
-                    <a class="hover:text-emerald-500 transition" href="./courses-raksmey.html">
-                        Courses
-                    </a>
-                </li>
+      
+      <!-- Hamburger (mobile) -->
+      <button id="menu-btn" class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+        <svg class="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
 
-                <li>
-                    <a class="hover:text-emerald-500 transition" href="./details-khema.html">
-                        Details
-                    </a>
-                </li>
+  <!-- Mobile overlay -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm"></div>
 
-                <li>
-                    <a class="hover:text-emerald-500 transition" href="./about-sreynha.html">
-                        About
-                    </a>
-                </li>
+  <!-- Mobile menu -->
+  <div id="mobile-menu"
+    class="lg:hidden fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg transform -translate-y-full transition-transform duration-300 z-40">
+    <div class="px-6 py-6 flex flex-col gap-5 text-gray-700 dark:text-gray-200 font-medium">
+      <a href="#" class="hover:text-[#00FA9A] transition">Home</a>
+      <a href="#" class="hover:text-[#00FA9A] transition text-[#00FA9A]">Courses</a>
+      <a href="#" class="hover:text-[#00FA9A] transition">Details</a>
+      <a href="#" class="hover:text-[#00FA9A] transition">About</a>
+      <a href="#" class="hover:text-[#00FA9A] transition">Contact</a>
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-4 flex flex-col gap-3">
+        <a href="#" class="hover:text-[#00FA9A] transition">Login</a>
+        <a href="#" class="text-[#00FA9A] font-semibold">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-                <li>
-                    <a class="hover:text-emerald-500 transition" href="./contact-longhuy.html">
-                        Contact
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- RIGHT SIDE -->
-            <div class="flex items-center gap-4">
-
-                <!-- DARK MODE -->
-                <button id="theme-toggle"
-                    class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition">
-
-                    <div id="toggle-circle"
-                        class="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300">
-                    </div>
-
-                </button>
-
-                
-                <!-- MOBILE BUTTON -->
-                <button id="menu-btn" class="lg:hidden p-2 text-gray-700 dark:text-white">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-
-            </div>
-        </div>
-
-        <!-- MOBILE MENU -->
-        <div id="mobile-menu"
-            class="lg:hidden fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow-xl transform -translate-y-full transition-transform duration-300 z-40">
-
-            <div class="px-6 py-8 flex flex-col gap-5 text-gray-700 dark:text-gray-200 font-medium">
-
-                <a href="#" class="hover:text-emerald-500">Home</a>
-                <a href="#" class="hover:text-emerald-500">Courses</a>
-                <a href="#" class="hover:text-emerald-500">About</a>
-
-                <div class="border-t dark:border-gray-700 pt-4 flex flex-col gap-4">
-
-                   
-
-                </div>
-
-            </div>
-        </div>
-    </nav>
-
+<!-- Spacer so content doesn't hide under fixed navbar -->
+<div class="nav-spacer"></div>
     <!-- HERO SECTION -->
-    <section
-        class="relative pt-32 pb-20 bg-gradient-to-tr from-emerald-500 via-teal-600 to-cyan-700 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-900 overflow-hidden">
-
+    <section class="relative pt-32 pb-20 bg-gradient-to-tr from-emerald-500 via-teal-600 to-cyan-700 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-900 overflow-hidden">
         <div class="container mx-auto px-6 relative z-10">
-
             <div class="flex flex-col lg:flex-row items-center">
-
-                <!-- LEFT -->
                 <div class="lg:w-1/2 mb-12 lg:mb-0">
-
                     <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-white">
-
-                        <span class="gradient-text bg-gradient-to-r from-yellow-300 to-pink-300">
-                            Improve Your
-                        </span>
-
-                        Technical Skill
-
-                        <span class="gradient-text bg-gradient-to-r from-yellow-300 to-pink-300">
-                            for the Future
-                        </span>
-
+                       <span class="gradient-text bg-gradient-to-r from-yellow-300 to-pink-300">Improve Your</span> Technical Skill <span class="gradient-text bg-gradient-to-r from-yellow-300 to-pink-300">for Real-World Use</span>
                     </h1>
-
                     <p class="text-xl text-emerald-50 mb-8 max-w-lg opacity-90">
-                        Access 500+ industry-recognized certifications and courses in Cloud, AI,
-                        Cybersecurity, and Data Science. Learn at your own pace and build real-world skills.
+                        Access 500+ industry-recognized certifications and courses in Cloud, AI, Cybersecurity, and data. Learn at your own pace and get hired faster.
                     </p>
-
                     <div class="flex flex-col sm:flex-row gap-4">
-
-                        <button
-                            class="bg-white text-emerald-700 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 transition-all transform hover:scale-105 shadow-xl">
-
-                            Explore Courses
-                            <i class="fa-solid fa-arrow-right ml-2"></i>
-
+                        <button class="bg-white text-emerald-700 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 transition-all transform hover:scale-105 shadow-xl">
+                            Explore Courses <i class="fa-solid fa-arrow-right ml-2"></i>
                         </button>
-
-                        <button
-                            class="bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition-all">
-
+                        <button class="bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition-all">
                             Start For Free
-
                         </button>
-
                     </div>
                 </div>
-
-                <!-- RIGHT -->
                 <div class="lg:w-1/2 flex justify-center">
-
-                    <img
-                        src="./img/3d_cartoon_in_chill_using_laptop_in_sitting_in_sofa-removebg-preview.png"
-                        alt="Hero Illustration"
-                        class="w-full max-w-lg floating"
-                    >
-
+                    <img src="./img/3d_cartoon_in_chill_using_laptop_in_sitting_in_sofa-removebg-preview.png" 
+                         alt="Hero Illustration" class="w-full max-w-lg floating">
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- FEATURES SECTION -->
     <section class="py-24 bg-gray-50 dark:bg-slate-900 transition-colors">
-
         <div class="container mx-auto px-6">
-
             <div class="text-center mb-16">
-
-                <span class="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase text-sm">
-                    Features
-                </span>
-
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3">
-                    Everything You Need To Succeed
-                </h2>
-
-                <p class="text-gray-700 dark:text-gray-300 mt-4">
-                    Our platform is packed with powerful features designed to help you learn and grow.
-                </p>
-
+                <span class="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase text-sm">Features</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3">Everything You Need To succeed</h2>
+                <p class="text-gray-700 dark:text-amber-50">Our platform in packed with powerful features designed to help you build, grow,<br>and scale your business. </p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-                <!-- CARD 1 -->
-                <div
-                    class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg hover:-translate-y-3 transition-all duration-300 border border-transparent hover:border-emerald-500/30">
-
-                    <img
-                        src="https://magai.co/wp-content/uploads/2025/01/magai-featured-photo-genai-vs-machine-learning-scaled.jpg"
-                        class="w-full h-48 object-cover rounded-xl mb-6"
-                    >
-
+                <!-- Card 1 -->
+                <div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg hover:-translate-y-3 transition-all duration-300 border border-transparent hover:border-emerald-500/30">
+                    <img src="https://magai.co/wp-content/uploads/2025/01/magai-featured-photo-genai-vs-machine-learning-scaled.jpg" class="w-full h-48 object-cover rounded-xl mb-6">
                     <div class="px-4 pb-6">
-
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                            AI & Machine Learning
-                        </h3>
-
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Learn how machines think and learn from data.
-                        </p>
-
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">AI & Machine Learning</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Learn how machines think and learn from data.</p>
+                        <a href="#" class="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-2 group">
+                            Learn more <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition"></i>
+                        </a>
                     </div>
                 </div>
-
-                <!-- CARD 2 -->
-                <div
-                    class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg hover:-translate-y-3 transition-all duration-300 border border-transparent hover:border-emerald-500/30">
-
-                    <img
-                        src="https://www.mygreatlearning.com/blog/wp-content/uploads/2019/09/What-is-data-science-2.jpg"
-                        class="w-full h-48 object-cover rounded-xl mb-6"
-                    >
-
+                <!-- Card 2 -->
+                <div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg hover:-translate-y-3 transition-all duration-300 border border-transparent hover:border-emerald-500/30">
+                    <img src="https://www.mygreatlearning.com/blog/wp-content/uploads/2019/09/What-is-data-science-2.jpg" class="w-full h-48 object-cover rounded-xl mb-6">
                     <div class="px-4 pb-6">
-
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                            Data Science
-                        </h3>
-
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Analyze data and discover meaningful insights.
-                        </p>
-
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Data Science</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Analyse data and discover insight.</p>
+                        <a href="#" class="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-2 group">
+                            Learn more <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition"></i>
+                        </a>
                     </div>
                 </div>
-
-                <!-- CARD 3 -->
-                <div
-                    class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg hover:-translate-y-3 transition-all duration-300 border border-transparent hover:border-emerald-500/30">
-
-                    <img
-                        src="https://www.rishabhsoft.com/wp-content/uploads/2022/02/Banner-Image-Cloud-Computing-in-Digital-Transformation.jpg"
-                        class="w-full h-48 object-cover rounded-xl mb-6"
-                    >
-
+                <!-- Card 3 -->
+                <div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg hover:-translate-y-3 transition-all duration-300 border border-transparent hover:border-emerald-500/30">
+                    <img src="https://www.rishabhsoft.com/wp-content/uploads/2022/02/Banner-Image-Cloud-Computing-in-Digital-Transformation.jpg" class="w-full h-48 object-cover rounded-xl mb-6">
                     <div class="px-4 pb-6">
-
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                            Cloud Computing
-                        </h3>
-
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Work with AWS, Azure, and Google Cloud technologies.
-                        </p>
-
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Cloud Computing</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Work AWS, Azure, and Goolge Cloud.</p>
+                        <a href="#" class="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-2 group">
+                            Learn more <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition"></i>
+                        </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- STATS -->
     <section class="py-16 bg-emerald-600 dark:bg-emerald-800">
-
         <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-
             <div>
                 <div class="text-4xl font-extrabold mb-1">15K+</div>
-                <div class="text-emerald-100 text-sm uppercase tracking-wide">
-                    Active Students
-                </div>
+                <div class="text-emerald-100 text-sm uppercase tracking-wide">Active Students</div>
             </div>
-
             <div>
                 <div class="text-4xl font-extrabold mb-1">98%</div>
-                <div class="text-emerald-100 text-sm uppercase tracking-wide">
-                    Job Placement
-                </div>
+                <div class="text-emerald-100 text-sm uppercase tracking-wide">Job Placement</div>
             </div>
-
             <div>
                 <div class="text-4xl font-extrabold mb-1">500+</div>
-                <div class="text-emerald-100 text-sm uppercase tracking-wide">
-                    Expert Mentors
-                </div>
+                <div class="text-emerald-100 text-sm uppercase tracking-wide">Expert Mentors</div>
             </div>
-
             <div>
                 <div class="text-4xl font-extrabold mb-1">24/7</div>
-                <div class="text-emerald-100 text-sm uppercase tracking-wide">
-                    Live Support
-                </div>
+                <div class="text-emerald-100 text-sm uppercase tracking-wide">Live Support</div>
             </div>
-
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="mt-20">
-
-        <!-- TOP FOOTER -->
-        <div class="bg-gray-900 text-gray-300 py-14">
-            <div class="max-w-7xl mx-auto px-6">
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-
-                    <!-- ABOUT -->
-                    <div>
-
-                        <h1 class="text-3xl font-bold text-white mb-5">
-                            TechSkills
-                        </h1>
-
-                        <p class="leading-7 text-gray-400">
-                            TechSkills is a modern E-Learning platform focused on
-                            Information Technology and Computer Science education.
-                            Our platform helps students and developers learn
-                            programming, cloud technologies, cybersecurity,
-                            artificial intelligence, and software engineering
-                            through practical online courses and real-world projects.
-                        </p>
-
+    <!-- TESTIMONIALS -->
+    <section class="py-24 bg-white dark:bg-slate-950">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase text-sm">TESTIMONIALS</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Hear from students who transformed their careers.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Student 1 -->
+                <div class="bg-gray-50 dark:bg-slate-800 p-8 rounded-2xl shadow-sm border-t-4 border-emerald-500">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/150?u=vannda" class="w-12 h-12 rounded-full mr-4 border-2 border-emerald-500">
+                        <div>
+                            <h4 class="font-bold dark:text-white">Vannda</h4>
+                            <p class="text-emerald-600 text-xs font-bold">Cloud Architect</p>
+                        </div>
                     </div>
-
-                    <!-- COMPANY -->
-                    <div>
-
-                        <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
-                            Company
-                        </h2>
-
-                        <ul class="space-y-3">
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    About Us
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Our Courses
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Career Paths
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Privacy Policy
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Contact Us
-                                </a>
-                            </li>
-
-                        </ul>
-
+                    <p class="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
+                        "Passed my AWS Solutions Architect exam on the first try! The practice tests were spot on. Highly recommended for anyone serious about Cloud."
+                    </p>
+                </div>
+                <!-- Student 2 -->
+                <div class="bg-gray-50 dark:bg-slate-800 p-8 rounded-2xl shadow-sm border-t-4 border-indigo-500">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/150?u=narith" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h4 class="font-bold dark:text-white">Sovath</h4>
+                            <p class="text-indigo-600 text-xs font-bold">Security Analyst</p>
+                        </div>
                     </div>
-
-                    <!-- COURSES -->
-                    <div>
-
-                        <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
-                            Courses
-                        </h2>
-
-                        <ul class="space-y-3">
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Artificial Intelligence (AI) & Machine Learning (ML)
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Data Science & Big Data Analytics
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Cloud Computing (AWS / Azure / GCP)
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Full-Stack Development
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Mobile App Development
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Cybersecurity & Ethical Hacking
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Blockchain Development
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    DevOps Engineering
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Java Programming
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="hover:text-indigo-400 transition">
-                                    Linux System Administration
-                                </a>
-                            </li>
-
-                        </ul>
-
+                    <p class="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
+                        "The Cybersecurity course gave me real-world skills needed to land my first role. The hands-on labs are worth every penny."
+                    </p>
+                </div>
+                <!-- Student 3 -->
+                <div class="bg-gray-50 dark:bg-slate-800 p-8 rounded-2xl shadow-sm border-t-4 border-pink-500">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/150?u=jennie" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-500">
+                        <div>
+                            <h4 class="font-bold dark:text-white">Jennie</h4>
+                            <p class="text-pink-600 text-xs font-bold">Data Scientist</p>
+                        </div>
                     </div>
-
-                    <!-- CONNECT -->
-                    <div>
-
-                        <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">
-                            Connect With Us
-                        </h2>
-
-                        <p class="text-gray-400 leading-7 mb-4">
-                            Stay connected with TechSkills to get the latest updates on IT & Computer Science courses,
-                            tutorials, and learning resources.
-                        </p>
-
-                        <p class="text-gray-400 leading-7 mb-5">
-                            You can also find our learning platform easily on Google by searching
-                            <span class="text-white font-semibold">
-                                “TechSkills E-Learning”
-                            </span>.
-                        </p>
-
-                        <p class="text-gray-500 text-sm">
-                            We are always updating new courses to help you build real-world tech skills.
-                        </p>
-
-                    </div>
-
+                    <p class="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
+                        "The Data Analytics path helped me switch careers in just 3 months. Very practical content and amazing community support."
+                    </p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- BOTTOM FOOTER -->
-        <div class="bg-indigo-700 text-white py-5">
+  <footer>
 
-            <div class="max-w-7xl mx-auto px-6">
+  <!-- Top footer -->
+  <div class="bg-gray-900 text-gray-300 py-14">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-                <div class="flex flex-col md:flex-row justify-between items-center gap-3">
-
-                    <p>
-                        © 2026 TechSkills. All Rights Reserved.
-                    </p>
-
-                    <p>
-                        Learn IT Skills. Build Your Future.
-                    </p>
-
-                </div>
-
-            </div>
-
+        <!-- About -->
+        <div>
+          <h1 class="text-3xl font-bold text-white mb-5">TechSkills</h1>
+          <p class="leading-7 text-gray-400">
+            TechSkills is a modern E-Learning platform focused on Information Technology
+            and Computer Science education. Our platform helps students and developers
+            learn programming, cloud technologies, cybersecurity, artificial intelligence,
+            and software engineering through practical online courses and real-world projects.
+          </p>
         </div>
 
-    </footer>
+        <!-- Company -->
+        <div>
+          <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">Company</h2>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-indigo-400 transition">About Us</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Our Courses</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Career Paths</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Contact Us</a></li>
+          </ul>
+        </div>
 
-    <!-- SCRIPTS -->
-    <script>
+        <!-- Courses -->
+        <div>
+          <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">Courses</h2>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-indigo-400 transition">Artificial Intelligence & Machine Learning</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Data Science & Big Data Analytics</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Cloud Computing (AWS / Azure / GCP)</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Full-Stack Development</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Mobile App Development</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Cybersecurity & Ethical Hacking</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Blockchain Development</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">DevOps Engineering</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Java Programming</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Linux System Administration</a></li>
+          </ul>
+        </div>
 
-        // MOBILE MENU
-        const menuBtn = document.getElementById("menu-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
+        <!-- Connect -->
+        <div>
+          <h2 class="text-2xl font-semibold text-white mb-5 border-b-4 border-indigo-500 inline-block pb-2">Connect With Us</h2>
+          <p class="text-gray-400 leading-7 mb-4">
+            Stay connected with TechSkills to get the latest updates on IT & Computer Science
+            courses, tutorials, and learning resources.
+          </p>
+          <p class="text-gray-400 leading-7 mb-5">
+            Find us on Google by searching
+            <span class="text-white font-semibold">"TechSkills E-Learning"</span>.
+          </p>
+          <p class="text-gray-500 text-sm">We are always updating new courses to help you build real-world tech skills.</p>
+        </div>
 
-        let isMenuOpen = false;
+      </div>
+    </div>
+  </div>
 
-        menuBtn.addEventListener("click", () => {
+  <!-- Bottom footer -->
+  <div class="bg-indigo-700 text-white py-5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+        <p>© 2026 TechSkills. All Rights Reserved.</p>
+        <p>Learn IT Skills. Build Your Future.</p>
+      </div>
+    </div>
+  </div>
 
-            isMenuOpen = !isMenuOpen;
+</footer>
 
-            if (isMenuOpen) {
-                mobileMenu.classList.remove("-translate-y-full");
-            } else {
-                mobileMenu.classList.add("-translate-y-full");
-            }
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════ -->
+<script>
+/* ── Curriculum accordion ──────────────────────────── */
+function toggle(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.course-block').forEach(b => b.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
 
-        });
+/* ── Mobile nav ────────────────────────────────────── */
+const menuBtn    = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const overlay    = document.getElementById('overlay');
 
-        // DARK MODE
-        const toggle = document.getElementById("theme-toggle");
-        const circle = document.getElementById("toggle-circle");
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.remove('-translate-y-full');
+  overlay.classList.remove('hidden');
+});
+overlay.addEventListener('click', () => {
+  mobileMenu.classList.add('-translate-y-full');
+  overlay.classList.add('hidden');
+});
 
-        if (
-            localStorage.getItem("theme") === "dark" ||
-            (!("theme" in localStorage) &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
+/* ── Dark mode — syncs Tailwind `dark` class + CSS vars ── */
+const themeToggle = document.getElementById('theme-toggle');
+const toggleCircle = document.getElementById('toggle-circle');
 
-            document.documentElement.classList.add("dark");
-            circle.classList.add("translate-x-6");
+function applyTheme(dark) {
+  if (dark) {
+    document.documentElement.classList.add('dark');
+    toggleCircle.classList.add('translate-x-6');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+    toggleCircle.classList.remove('translate-x-6');
+    localStorage.setItem('theme', 'light');
+  }
+}
 
-        }
+/* Restore saved preference or detect system preference */
+const saved = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(saved ? saved === 'dark' : prefersDark);
 
-        toggle.addEventListener("click", () => {
-
-            document.documentElement.classList.toggle("dark");
-
-            if (document.documentElement.classList.contains("dark")) {
-
-                localStorage.setItem("theme", "dark");
-                circle.classList.add("translate-x-6");
-
-            } else {
-
-                localStorage.setItem("theme", "light");
-                circle.classList.remove("translate-x-6");
-
-            }
-
-        });
-
-    </script>
+themeToggle.addEventListener('click', () => {
+  applyTheme(!document.documentElement.classList.contains('dark'));
+});
+</script>
 
 </body>
 </html>
