@@ -12,35 +12,40 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             background: #f5f5f5;
-            margin: 0;
-            padding: 20px;
         }
 
         h1 {
-            text-align: left;
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            line-height: 2;
+            font-size: 30px;
+            
         }
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            justify-content: center;
+            margin: auto;
         }
 
         .card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: 0.3s;
+            
         }
-
+      
         .card:hover {
             transform: translateY(-5px);
         }
 
         .card-header {
-            height: 120px;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -60,7 +65,7 @@
         }
 
         .card-body {
-            padding: 15px;
+            padding: 15px,
         }
 
         .title {
@@ -73,6 +78,7 @@
             font-size: 14px;
             color: #555;
         }
+        
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -89,7 +95,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
     <!-- LOGO -->
-    <a href="#" class="text-2xl font-bold text-[#00FA9A]">
+    <a href="#" class="text-2xl font-bold text-[#1E3A8A] " >
       TechSkills
     </a>
 
@@ -113,15 +119,15 @@ tailwind.config = {
         </div>
       </button>
 
-      <!-- LOGIN -->
+      <!-- LOGIN
       <a href="#" class="hidden sm:block text-gray-700 dark:text-gray-200 hover:text-[#00FA9A] text-sm">
         Login
       </a>
 
-      <!-- SIGN UP -->
-      <a href="#" class="hidden sm:block bg-[#00FA9A] hover:bg-[#00d487] text-black px-4 py-2 rounded-lg text-sm font-medium">
+       SIGN UP -->
+      <!-- <a href="#" class="hidden sm:block bg-[#00FA9A] hover:bg-[#00d487] text-black px-4 py-2 rounded-lg text-sm font-medium">
         Sign Up
-      </a>
+      </a> --> 
 
       <!-- MOBILE BUTTON -->
       <button id="menu-btn" class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -150,10 +156,10 @@ tailwind.config = {
       <a href="#" class="hover:text-[#00FA9A]">About</a>
       <a href="#" class="hover:text-[#00FA9A]">Contact</a>
 
-      <div class="border-t pt-4 flex flex-col gap-3">
+      <!-- <div class="border-t pt-4 flex flex-col gap-3">
         <a href="#">Login</a>
         <a href="#" class="text-[#00FA9A] font-semibold">Sign Up</a>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -204,7 +210,7 @@ toggle.addEventListener("click", () => {
 });
 </script>
 
-    <h1>Explore Our Tech Courses</h1>
+    <!-- <h1>Explore Our Tech Courses</h1> -->
     <div class="container">
         <div class="card">
             <div class="card-header ai">
